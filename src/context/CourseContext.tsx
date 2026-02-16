@@ -26,6 +26,7 @@ const CourseContext = createContext<CourseContextType | null>(null);
 
 const TOTAL_MODULES = 9;
 const STORAGE_KEY = 'ajtbd-course-state';
+const SCROLL_KEY = 'ajtbd-scroll-positions';
 
 function loadState(): Partial<CourseState> {
   if (typeof window === 'undefined') return {};
@@ -98,7 +99,16 @@ export function CourseProvider({ children }: { children: ReactNode }) {
   }, [state, mounted]);
 
   const setCurrentModule = useCallback((module: number) => {
-    setState(prev => ({ ...prev, currentModule: module }));
+    setState(prev => {
+      if (typeof window !== 'undefined') {
+        try {
+          const positions = JSON.parse(localStorage.getItem(SCROLL_KEY) || '{}');
+          positions[prev.currentModule] = window.scrollY;
+          localStorage.setItem(SCROLL_KEY, JSON.stringify(positions));
+        } catch {}
+      }
+      return { ...prev, currentModule: module };
+    });
   }, []);
 
   const completeModule = useCallback((module: number) => {

@@ -340,7 +340,6 @@ export default function Module9() {
                   onClick={() => {
                     setOpenCheatSheet(true);
                     setCurrentModule(0);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="text-sm text-accent mt-4 hover:underline cursor-pointer transition-colors hover:text-accent/80"
                 >
@@ -386,7 +385,6 @@ export default function Module9() {
               <button
                 onClick={() => {
                   setCurrentModule(0);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="px-8 py-3 bg-accent text-white text-sm font-medium rounded-lg
                   hover:opacity-90 transition-opacity cursor-pointer"

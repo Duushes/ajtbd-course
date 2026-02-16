@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CourseProvider, useCourse } from '@/context/CourseContext';
 import ProgressBar from '@/components/ProgressBar';
@@ -31,9 +32,46 @@ const moduleComponents = [
   Module9,
 ];
 
+const SCROLL_KEY = 'ajtbd-scroll-positions';
+
 function CourseContent() {
   const { currentModule } = useCourse();
   const ModuleComponent = moduleComponents[currentModule] || Landing;
+
+  // Restore scroll position on module change
+  useEffect(() => {
+    try {
+      const positions = JSON.parse(localStorage.getItem(SCROLL_KEY) || '{}');
+      const saved = positions[currentModule];
+      if (saved !== undefined && saved > 0) {
+        window.scrollTo(0, saved);
+        // Retry if page content hasn't loaded yet (dynamic imports)
+        const timer = setTimeout(() => {
+          if (window.scrollY < saved - 10) {
+            window.scrollTo(0, saved);
+          }
+        }, 400);
+        return () => clearTimeout(timer);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  }, [currentModule]);
+
+  // Save scroll position on page close/refresh
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      try {
+        const positions = JSON.parse(localStorage.getItem(SCROLL_KEY) || '{}');
+        positions[currentModule] = window.scrollY;
+        localStorage.setItem(SCROLL_KEY, JSON.stringify(positions));
+      } catch {}
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [currentModule]);
 
   return (
     <>

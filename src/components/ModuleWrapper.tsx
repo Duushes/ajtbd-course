@@ -36,12 +36,10 @@ export default function ModuleWrapper({ moduleIndex, title, subtitle, children, 
     if (moduleIndex < totalModules) {
       setTimeout(() => {
         setCurrentModule(moduleIndex + 1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 300);
     } else {
       setTimeout(() => {
         setCurrentModule(0);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 300);
     }
   };
@@ -93,7 +91,6 @@ export default function ModuleWrapper({ moduleIndex, title, subtitle, children, 
           <button
             onClick={() => {
               setCurrentModule(moduleIndex - 1);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
           >
@@ -114,10 +111,8 @@ export default function ModuleWrapper({ moduleIndex, title, subtitle, children, 
             onClick={() => {
               if (moduleIndex < totalModules) {
                 setCurrentModule(moduleIndex + 1);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
               } else {
                 setCurrentModule(0);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
             className="px-6 py-2.5 bg-muted text-foreground text-sm font-medium rounded-lg
