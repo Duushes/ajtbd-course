@@ -121,77 +121,77 @@ export default function Module2() {
       <motion.div variants={fadeInItem} className="mb-10">
         <h2 className="text-xl font-semibold mb-6">Граф работ: визуальная структура</h2>
         <div className="flex justify-center my-6">
-          <svg viewBox="0 0 600 340" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-2xl">
+          <svg viewBox="0 0 700 340" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-2xl">
             {/* Big Job (top) */}
-            <rect x="210" y="10" width="180" height="50" rx="10" className="text-accent/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
-            <rect x="210" y="10" width="180" height="50" rx="10" className="text-accent/5" fill="currentColor" />
-            <text x="300" y="40" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Big Job</text>
+            <rect x="260" y="10" width="180" height="50" rx="10" className="text-accent/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <rect x="260" y="10" width="180" height="50" rx="10" className="text-accent/5" fill="currentColor" />
+            <text x="350" y="40" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Big Job</text>
 
             {/* Connectors Big → Core */}
-            <line x1="260" y1="60" x2="150" y2="100" stroke="currentColor" strokeWidth="1.5" className="text-border" />
-            <line x1="300" y1="60" x2="300" y2="100" stroke="currentColor" strokeWidth="1.5" className="text-border" />
-            <line x1="340" y1="60" x2="450" y2="100" stroke="currentColor" strokeWidth="1.5" className="text-border" />
+            <line x1="310" y1="60" x2="120" y2="100" stroke="currentColor" strokeWidth="1.5" className="text-border" />
+            <line x1="350" y1="60" x2="350" y2="100" stroke="currentColor" strokeWidth="1.5" className="text-border" />
+            <line x1="390" y1="60" x2="580" y2="100" stroke="currentColor" strokeWidth="1.5" className="text-border" />
 
             {/* Core Job 1 */}
-            <rect x="60" y="100" width="180" height="50" rx="10" className="text-success/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
-            <rect x="60" y="100" width="180" height="50" rx="10" className="text-success/5" fill="currentColor" />
-            <text x="150" y="130" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Core Job 1</text>
+            <rect x="30" y="100" width="180" height="50" rx="10" className="text-success/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <rect x="30" y="100" width="180" height="50" rx="10" className="text-success/5" fill="currentColor" />
+            <text x="120" y="130" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Core Job 1</text>
 
             {/* Core Job 2 */}
-            <rect x="210" y="100" width="180" height="50" rx="10" className="text-success/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
-            <rect x="210" y="100" width="180" height="50" rx="10" className="text-success/5" fill="currentColor" />
-            <text x="300" y="130" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Core Job 2</text>
+            <rect x="260" y="100" width="180" height="50" rx="10" className="text-success/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <rect x="260" y="100" width="180" height="50" rx="10" className="text-success/5" fill="currentColor" />
+            <text x="350" y="130" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Core Job 2</text>
 
             {/* Core Job 3 */}
-            <rect x="360" y="100" width="180" height="50" rx="10" className="text-success/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
-            <rect x="360" y="100" width="180" height="50" rx="10" className="text-success/5" fill="currentColor" />
-            <text x="450" y="130" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Core Job 3</text>
+            <rect x="490" y="100" width="180" height="50" rx="10" className="text-success/60" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <rect x="490" y="100" width="180" height="50" rx="10" className="text-success/5" fill="currentColor" />
+            <text x="580" y="130" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Core Job 3</text>
 
             {/* Connectors Core 1 → Small */}
-            <line x1="110" y1="150" x2="70" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
-            <line x1="150" y1="150" x2="150" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
-            <line x1="190" y1="150" x2="230" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
+            <line x1="80" y1="150" x2="45" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
+            <line x1="120" y1="150" x2="120" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
+            <line x1="160" y1="150" x2="195" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
 
             {/* Small Jobs under Core 1 */}
-            <rect x="30" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
-            <rect x="30" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
-            <text x="70" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
+            <rect x="5" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="5" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
+            <text x="45" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
 
-            <rect x="115" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
-            <rect x="115" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
-            <text x="155" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
+            <rect x="90" y="190" width="60" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="90" y="190" width="60" height="36" rx="8" className="text-warning/5" fill="currentColor" />
+            <text x="120" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
 
-            <rect x="200" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
-            <rect x="200" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
-            <text x="240" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
+            <rect x="155" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="155" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
+            <text x="195" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
 
             {/* Connectors Core 3 → Small */}
-            <line x1="410" y1="150" x2="370" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
-            <line x1="450" y1="150" x2="450" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
-            <line x1="490" y1="150" x2="530" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
+            <line x1="540" y1="150" x2="505" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
+            <line x1="580" y1="150" x2="580" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
+            <line x1="620" y1="150" x2="655" y2="190" stroke="currentColor" strokeWidth="1" className="text-border" />
 
             {/* Small Jobs under Core 3 */}
-            <rect x="330" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
-            <rect x="330" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
-            <text x="370" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
+            <rect x="465" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="465" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
+            <text x="505" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
 
-            <rect x="415" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
-            <rect x="415" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
-            <text x="455" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
+            <rect x="550" y="190" width="60" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="550" y="190" width="60" height="36" rx="8" className="text-warning/5" fill="currentColor" />
+            <text x="580" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
 
-            <rect x="500" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
-            <rect x="500" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
-            <text x="540" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
+            <rect x="615" y="190" width="80" height="36" rx="8" className="text-warning/50" stroke="currentColor" strokeWidth="1" fill="none" />
+            <rect x="615" y="190" width="80" height="36" rx="8" className="text-warning/5" fill="currentColor" />
+            <text x="655" y="212" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
 
             {/* Legend */}
-            <rect x="150" y="260" width="12" height="12" rx="3" className="text-accent/40" fill="currentColor" />
-            <text x="170" y="270" className="text-muted-foreground" fontSize="10" fill="currentColor">Big Job</text>
+            <rect x="200" y="260" width="12" height="12" rx="3" className="text-accent/40" fill="currentColor" />
+            <text x="220" y="270" className="text-muted-foreground" fontSize="10" fill="currentColor">Big Job</text>
 
-            <rect x="240" y="260" width="12" height="12" rx="3" className="text-success/40" fill="currentColor" />
-            <text x="260" y="270" className="text-muted-foreground" fontSize="10" fill="currentColor">Core Job</text>
+            <rect x="290" y="260" width="12" height="12" rx="3" className="text-success/40" fill="currentColor" />
+            <text x="310" y="270" className="text-muted-foreground" fontSize="10" fill="currentColor">Core Job</text>
 
-            <rect x="340" y="260" width="12" height="12" rx="3" className="text-warning/40" fill="currentColor" />
-            <text x="360" y="270" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
+            <rect x="390" y="260" width="12" height="12" rx="3" className="text-warning/40" fill="currentColor" />
+            <text x="410" y="270" className="text-muted-foreground" fontSize="10" fill="currentColor">Small Job</text>
           </svg>
         </div>
       </motion.div>

@@ -180,8 +180,8 @@ export default function Module3() {
             <polygon points="332,250 322,255 332,260" className="text-error" fill="currentColor" />
 
             {/* Bottom formula */}
-            <rect x="140" y="335" width="360" height="35" rx="8" className="text-accent/10" fill="currentColor" />
-            <rect x="140" y="335" width="360" height="35" rx="8" stroke="currentColor" strokeWidth="1" className="text-accent/30" fill="none" />
+            <rect x="80" y="335" width="480" height="35" rx="8" className="text-accent/10" fill="currentColor" />
+            <rect x="80" y="335" width="480" height="35" rx="8" stroke="currentColor" strokeWidth="1" className="text-accent/30" fill="none" />
             <text x="320" y="357" textAnchor="middle" className="text-accent" fontSize="12" fontWeight="600" fill="currentColor">Толчок + Притяжение &gt; Инерция + Тревога = Переключение</text>
           </svg>
         </div>
