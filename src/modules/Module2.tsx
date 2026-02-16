@@ -4,6 +4,7 @@ import ModuleWrapper, { fadeInItem } from '@/components/ModuleWrapper';
 import Quiz from '@/components/Quiz';
 import DragDrop from '@/components/DragDrop';
 import InputExercise from '@/components/InputExercise';
+import ScenarioCard from '@/components/ScenarioCard';
 import { motion } from 'framer-motion';
 
 export default function Module2() {
@@ -369,6 +370,87 @@ export default function Module2() {
             { id: 'functional', label: 'Функциональная', acceptIds: ['func1'] },
             { id: 'emotional', label: 'Эмоциональная', acceptIds: ['emot1'] },
             { id: 'social', label: 'Социальная', acceptIds: ['soc1'] },
+          ]}
+        />
+      </motion.div>
+
+      {/* --- Пример: Spotify --- */}
+      <motion.div variants={fadeInItem} className="mt-6 mb-10 p-6 rounded-xl bg-card border border-border/50">
+        <div className="flex items-center gap-2 mb-4">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-accent">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <path d="M6 8C8 7 12 7 14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M7 11C8.5 10 11.5 10 13 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M8 14C9 13.5 11 13.5 12 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          <h3 className="text-base font-semibold">Пример графа работ: Spotify</h3>
+        </div>
+        <div className="space-y-3 text-sm">
+          <div className="flex items-center gap-3">
+            <span className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Big Job:</strong> Наполнить свою жизнь эмоциями через музыку
+            </span>
+          </div>
+          <div className="flex items-center gap-3 ml-6">
+            <span className="w-2 h-2 rounded-full bg-success flex-shrink-0" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Core Job 1:</strong> Слушать любимую музыку в любой момент (найм решения &mdash; подписка Spotify)
+            </span>
+          </div>
+          <div className="flex items-center gap-3 ml-12">
+            <span className="w-1.5 h-1.5 rounded-full bg-warning flex-shrink-0" />
+            <span className="text-muted-foreground">Small Job: Найти новую музыку под настроение</span>
+          </div>
+          <div className="flex items-center gap-3 ml-12">
+            <span className="w-1.5 h-1.5 rounded-full bg-warning flex-shrink-0" />
+            <span className="text-muted-foreground">Small Job: Создать плейлист для тренировки</span>
+          </div>
+          <div className="flex items-center gap-3 ml-6">
+            <span className="w-2 h-2 rounded-full bg-success flex-shrink-0" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Core Job 2:</strong> Не скучать в дороге (смежная работа &rarr; подкасты)
+            </span>
+          </div>
+          <div className="flex items-center gap-3 ml-6 opacity-70">
+            <span className="w-2 h-2 rounded-full bg-success flex-shrink-0" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Core Job 3:</strong> Заснуть под расслабляющие звуки (смежная работа &rarr; точка роста)
+            </span>
+          </div>
+        </div>
+        <div className="mt-4 p-3 rounded-lg bg-accent/5 border border-accent/20">
+          <p className="text-xs text-accent">
+            Spotify начал с Core Job &laquo;слушать музыку&raquo;. Расширяясь по графу работ, добавил подкасты
+            (смежная работа &laquo;не скучать в дороге&raquo;) и звуки для сна. Связь многие-ко-многим:
+            &laquo;не скучать в дороге&raquo; может быть частью как Big Job &laquo;наполнить жизнь эмоциями&raquo;,
+            так и &laquo;продуктивно использовать время&raquo;.
+          </p>
+        </div>
+      </motion.div>
+
+      {/* --- ScenarioCard --- */}
+      <motion.div variants={fadeInItem} className="mt-6 mb-8">
+        <h3 className="text-lg font-semibold mb-2">Сценарий: найдите точку роста в графе</h3>
+        <ScenarioCard
+          scenario="Вы продакт-менеджер сервиса для заказа авиабилетов. Core Job: «организовать перелёт». У вас отличный NPS и retention. Куда расти?"
+          context="Из AJTBD-интервью вы узнали, что Big Job пользователей — «организовать отпуск без стресса». Рядом с Core Job в графе есть смежные работы."
+          options={[
+            {
+              text: 'Добавить больше фильтров для поиска билетов (глубже в Core Job)',
+              outcome: 'Это стратегия «идти глубже». При высоком NPS она даст незначительный прирост — Core Job уже решена хорошо. Для роста нужны новые работы.',
+              score: 3,
+            },
+            {
+              text: 'Добавить бронирование отелей — смежная работа в графе, которая возникает сразу после покупки билета',
+              outcome: 'Отлично! Это расширение по графу работ на смежную Core Job. «Забронировать жильё» — следующий шаг в критической последовательности Big Job «организовать отпуск». Пользователи уже доверяют вашему сервису.',
+              score: 10,
+            },
+            {
+              text: 'Запустить рекламную кампанию на новую аудиторию',
+              outcome: 'Маркетинг привлечёт новых пользователей, но не создаёт новую ценность через граф работ. Без расширения графа вы ограничены одной Core Job.',
+              score: 2,
+            },
           ]}
         />
       </motion.div>

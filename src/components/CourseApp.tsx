@@ -17,7 +17,6 @@ const Module6 = nextDynamic(() => import('@/modules/Module6'), { ssr: false });
 const Module7 = nextDynamic(() => import('@/modules/Module7'), { ssr: false });
 const Module8 = nextDynamic(() => import('@/modules/Module8'), { ssr: false });
 const Module9 = nextDynamic(() => import('@/modules/Module9'), { ssr: false });
-const Module10 = nextDynamic(() => import('@/modules/Module10'), { ssr: false });
 
 const moduleComponents = [
   Landing,
@@ -30,7 +29,6 @@ const moduleComponents = [
   Module7,
   Module8,
   Module9,
-  Module10,
 ];
 
 function CourseContent() {

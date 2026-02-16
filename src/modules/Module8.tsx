@@ -4,6 +4,7 @@ import ModuleWrapper, { fadeInItem } from '@/components/ModuleWrapper';
 import Quiz from '@/components/Quiz';
 import DragDrop from '@/components/DragDrop';
 import ScenarioCard from '@/components/ScenarioCard';
+import InputExercise from '@/components/InputExercise';
 import { motion } from 'framer-motion';
 
 export default function Module8() {
@@ -360,6 +361,53 @@ export default function Module8() {
         </p>
       </motion.div>
 
+      {/* --- Кейс: Amazon Go Wider --- */}
+      <motion.div variants={fadeInItem} className="mb-10 p-6 rounded-xl bg-card border border-border/50">
+        <h3 className="text-base font-semibold mb-4">Кейс: Amazon &mdash; мастер стратегии &laquo;Идти шире&raquo;</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          Amazon &mdash; классический пример последовательного расширения графа работ. Каждый новый продукт
+          решал смежную работу, которую клиенты уже пытались выполнить.
+        </p>
+        <div className="space-y-3 text-sm">
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-xs font-bold">1</div>
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Ядро:</strong> &laquo;Купить книгу, не выходя из дома&raquo; &mdash;
+              онлайн-магазин книг (1994). Текущее решение &mdash; поход в книжный магазин.
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-xs font-bold">2</div>
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Шире:</strong> &laquo;Купить что угодно, не выходя из дома&raquo; &mdash;
+              маркетплейс (1998). Смежная работа: если человек уже доверяет онлайн-покупке книг, он хочет покупать
+              и электронику, одежду, бытовую технику.
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-xs font-bold">3</div>
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Ещё шире:</strong> &laquo;Получить покупку быстрее&raquo; &mdash; Amazon Prime (2005).
+              Работа возникала после покупки: &laquo;Уже заказал, но ждать 5 дней мучительно&raquo;.
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 text-accent flex items-center justify-center text-xs font-bold">4</div>
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Выше (Big Job):</strong> &laquo;Получить всё, что мне нужно, мгновенно и без усилий&raquo; &mdash;
+              Prime Video, Alexa, Whole Foods. Amazon движется к решению Большой Работы: убрать трение из повседневной жизни.
+            </span>
+          </div>
+        </div>
+        <div className="mt-4 p-3 rounded-lg bg-accent/5 border border-accent/20">
+          <p className="text-xs text-accent">
+            <strong>Принцип Amazon:</strong> Каждое расширение основано на реальной работе клиента, а не на
+            технологической возможности. Безос говорил: &laquo;Начните с клиента и двигайтесь назад к технологии&raquo;.
+            Это чистый JTBD-подход к стратегии роста.
+          </p>
+        </div>
+      </motion.div>
+
       {/* --- Quiz --- */}
       <motion.div variants={fadeInItem}>
         <h3 className="text-lg font-semibold mb-2">Проверьте понимание</h3>
@@ -440,6 +488,16 @@ export default function Module8() {
               acceptIds: ['higher'],
             },
           ]}
+        />
+      </motion.div>
+      {/* --- InputExercise: стратегия для своего продукта --- */}
+      <motion.div variants={fadeInItem} className="mt-6">
+        <h3 className="text-lg font-semibold mb-2">Практика: спроектируйте стратегию роста</h3>
+        <InputExercise
+          prompt="Выберите продукт (свой или знакомый). Опишите его текущую основную работу (ядро) и предложите по одному конкретному шагу для каждой стратегии: Глубже, Шире, Выше."
+          placeholder="Продукт: ... Ядро (основная работа): ... Глубже: ... Шире: ... Выше: ..."
+          hint="Для «Глубже» подумайте: что можно улучшить в текущем решении ядра? Для «Шире»: какие смежные работы возникают до, во время или после? Для «Выше»: какая Большая Работа стоит за ядром?"
+          exampleAnswer="Продукт: Figma. Ядро: «быстро создать макет интерфейса и показать команде». Глубже: добавить AI-генерацию UI-компонентов, чтобы создавать макеты ещё быстрее. Шире: решить смежную работу «передать дизайн разработчикам без потери деталей» — Dev Mode. Выше: Big Job «создать отличный продукт, который понравится пользователям» — добавить прототипирование, пользовательское тестирование, аналитику прямо в Figma."
         />
       </motion.div>
     </ModuleWrapper>

@@ -3,6 +3,7 @@
 import ModuleWrapper, { fadeInItem } from '@/components/ModuleWrapper';
 import Quiz from '@/components/Quiz';
 import DragDrop from '@/components/DragDrop';
+import InputExercise from '@/components/InputExercise';
 import ScenarioCard from '@/components/ScenarioCard';
 import { motion } from 'framer-motion';
 
@@ -10,247 +11,143 @@ export default function Module6() {
   return (
     <ModuleWrapper
       moduleIndex={6}
-      title="Продуктовые требования"
-      subtitle="Исследование для продукта: от работы к требованиям"
+      title="Развитие существующего продукта"
+      subtitle="Алгоритм развития продукта через AJTBD"
       readingList={[
         {
-          title: 'Ваня Замесин — Кейс: IT-продукт принёс +5% выручки на клиента',
-          url: 'https://zamesin.ru/producthowto/book/case-it-product-makes-extra-revenue/',
+          title: 'Ваня Замесин — ABCDX-сегментация',
+          url: 'https://zamesin.ru/books/product-howto/abcdx-segmentation/',
         },
         {
-          title: 'Ваня Замесин — Кейс Leadl: SaaS вырос в 7,5 раз по активациям за счёт AJTBD',
+          title: 'Ваня Замесин — Кейс: фокусировка на сегменте вырастила выручку на 37%',
+          url: 'https://zamesin.ru/producthowto/book/ajtbd-segmentation-focus-makes-extra-revenue/',
+        },
+        {
+          title: 'Ваня Замесин — Riskiest Assumption Test',
+          url: 'https://zamesin.ru/books/product-howto/riskiest-assumption-test/',
+        },
+        {
+          title: 'Ваня Замесин — Кейс Leadl: SaaS вырос в 7,5 раз',
           url: 'https://zamesin.ru/producthowto/book/conversion-x7-5-in-ai-onboarding-with-ajtbd/',
-        },
-        {
-          title: 'Ваня Замесин — Как проводить UX-тесты',
-          url: 'https://zamesin.ru/books/product-howto/ux-test-101/',
-        },
-        {
-          title: 'Гайд AJTBD-интервью для B2B (Notion)',
-          url: 'https://www.notion.so/ivanzamesin/v3-3-JTBD-B2B-a109bc94fb964a6dbe5ba0c943f25050',
         },
       ]}
     >
       {/* --- Введение --- */}
       <motion.div variants={fadeInItem} className="prose prose-sm max-w-none mb-8">
-        <h2 className="text-xl font-semibold mb-3">Исследование для продукта: второй тип JTBD-исследования</h2>
+        <h2 className="text-xl font-semibold mb-3">Как развивать существующий продукт с помощью AJTBD</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          После того как вы нашли целевой сегмент (работа + текущее решение), нужно понять,
-          <strong className="text-foreground"> как именно люди выполняют эту работу пошагово</strong>.
-          Исследование для продукта разбивает Core Job на Small Jobs и Micro Jobs, находит
-          проблемы на каждом шаге и превращает их в продуктовые требования.
+          Когда у вас уже есть продукт с платящими пользователями, главный вопрос &mdash;{' '}
+          <strong className="text-foreground">куда расти дальше</strong>. Добавлять фичи наугад &mdash;
+          верный путь к раздутому продукту. AJTBD даёт системный алгоритм из 5 шагов,
+          который позволяет находить точки роста, валидировать их и принимать решения на основе данных.
         </p>
         <p className="text-sm text-muted-foreground leading-relaxed mt-3">
-          Ключевой вопрос интервью: &laquo;Проведите меня через последний раз, когда вы [делали работу].
-          Что вы сделали первым? Что потом?&raquo;. Так вы получаете детальную карту шагов с проблемами.
+          Помните ключевые понятия: <strong className="text-foreground">Работа (Job)</strong> &mdash;
+          цель/задача клиента, переход из Точки А в Точку Б, формула &laquo;хочу + глагол&raquo;.{' '}
+          <strong className="text-foreground">Решение (Solution)</strong> &mdash; всё, с помощью чего
+          человек выполняет работу. <strong className="text-foreground">Найм (Hiring)</strong> &mdash;
+          акт выбора конкретного решения для выполнения работы.
         </p>
       </motion.div>
 
-      {/* --- Job Mapping --- */}
-      <motion.div variants={fadeInItem} className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">Разбивка на Small Jobs и Micro Jobs</h2>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-          Разбейте Core Job на <strong className="text-foreground">Small Jobs</strong> (ключевые шаги),
-          а каждый Small Job &mdash; на <strong className="text-foreground">Micro Jobs</strong> (элементарные действия).
-          На каждом шаге фиксируйте: какой инструмент/метод используется сейчас, какие проблемы
-          возникают, и оценку эмоции × частоту для расчёта Problem Score.
-        </p>
-        <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-            Пример: шаги работы &laquo;организовать командную встречу&raquo;
-          </p>
-          <div className="flex flex-wrap gap-2 text-xs">
-            {[
-              'Определить цель встречи',
-              'Найти свободное время',
-              'Пригласить участников',
-              'Подготовить повестку',
-              'Провести встречу',
-              'Записать решения',
-              'Проконтролировать исполнение',
-            ].map((step, i) => (
-              <span
-                key={i}
-                className="flex items-center gap-1.5"
-              >
-                <span className="px-2.5 py-1.5 rounded-md border border-accent/20 bg-accent/5 text-accent font-medium">
-                  {i + 1}. {step}
-                </span>
-                {i < 6 && (
-                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" className="text-muted-foreground/30 flex-shrink-0">
-                    <path d="M0 4H12M12 4L8 1M12 4L8 7" stroke="currentColor" strokeWidth="1" />
-                  </svg>
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* --- Opportunity Score --- */}
-      <motion.div variants={fadeInItem} className="mb-8">
-        <h2 className="text-xl font-semibold mb-3">Problem Score: от проблем к требованиям</h2>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-          Для каждой проблемы на каждом шаге работы рассчитайте Problem Score:
-        </p>
-        <div className="p-4 rounded-xl bg-muted/50 border border-border/50 mb-4">
-          <p className="text-sm font-mono text-center text-foreground">
-            Problem Score = Средняя эмоция (1-5) &times; Средняя частота (1-5)
-          </p>
-          <p className="text-xs text-muted-foreground text-center mt-2">
-            Максимум 25 баллов. Чем выше &mdash; тем важнее решить эту проблему в продукте.
-          </p>
-        </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          <strong className="text-foreground">Высокая эмоция + высокая частота</strong> = приоритетное
-          требование к продукту. Человек часто сталкивается с этой проблемой и сильно от неё страдает.
-          Решив эту проблему, вы создадите максимальную ценность.
-        </p>
-      </motion.div>
-
-      {/* --- SVG-диаграмма: Opportunity Score Matrix --- */}
+      {/* --- SVG: 5-шаговый алгоритм --- */}
       <motion.div variants={fadeInItem} className="my-10">
         <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-          Матрица Problem Score
+          5-шаговый алгоритм развития продукта
         </h3>
         <div className="w-full overflow-x-auto">
           <svg
-            viewBox="0 0 600 500"
+            viewBox="0 0 620 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full max-w-xl mx-auto"
+            className="w-full max-w-2xl mx-auto"
           >
             {/* Background */}
-            <rect x="0" y="0" width="600" height="500" rx="16" fill="currentColor" fillOpacity="0.03" />
+            <rect x="0" y="0" width="620" height="400" rx="16" fill="currentColor" fillOpacity="0.03" />
 
-            {/* Grid area */}
-            <rect x="100" y="50" width="440" height="380" rx="4" fill="currentColor" fillOpacity="0.02" />
+            {/* Step 1 */}
+            <rect x="40" y="30" width="540" height="52" rx="10" fill="#7c3aed" fillOpacity="0.08" stroke="#7c3aed" strokeOpacity="0.3" strokeWidth="1" />
+            <circle cx="70" cy="56" r="14" fill="#7c3aed" fillOpacity="0.2" />
+            <text x="70" y="61" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">1</text>
+            <text x="95" y="52" fontSize="11" fontWeight="600" fill="#7c3aed">Формулируем гипотезу/идею для развития</text>
+            <text x="95" y="68" fontSize="9" fill="currentColor" fillOpacity="0.6">Какую новую работу продукт может обслуживать?</text>
 
-            {/* Quadrant backgrounds */}
-            {/* Top-left: High importance, Low satisfaction = OPPORTUNITY */}
-            <rect x="100" y="50" width="220" height="190" fill="#7c3aed" fillOpacity="0.1" />
-            {/* Top-right: High importance, High satisfaction = Keep up */}
-            <rect x="320" y="50" width="220" height="190" fill="#22c55e" fillOpacity="0.06" />
-            {/* Bottom-left: Low importance, Low satisfaction = Low priority */}
-            <rect x="100" y="240" width="220" height="190" fill="currentColor" fillOpacity="0.03" />
-            {/* Bottom-right: Low importance, High satisfaction = Overkill */}
-            <rect x="320" y="240" width="220" height="190" fill="#f59e0b" fillOpacity="0.06" />
+            {/* Arrow */}
+            <path d="M310 82 L310 98" stroke="#7c3aed" strokeOpacity="0.3" strokeWidth="1.5" />
+            <polygon points="306,95 310,103 314,95" fill="#7c3aed" fillOpacity="0.3" />
 
-            {/* Divider lines */}
-            <line x1="320" y1="50" x2="320" y2="430" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1" strokeDasharray="6 3" />
-            <line x1="100" y1="240" x2="540" y2="240" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1" strokeDasharray="6 3" />
+            {/* Step 2 */}
+            <rect x="40" y="105" width="540" height="52" rx="10" fill="#7c3aed" fillOpacity="0.12" stroke="#7c3aed" strokeOpacity="0.35" strokeWidth="1" />
+            <circle cx="70" cy="131" r="14" fill="#7c3aed" fillOpacity="0.25" />
+            <text x="70" y="136" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">2</text>
+            <text x="95" y="127" fontSize="11" fontWeight="600" fill="#7c3aed">Смотрим на метрики и продуктовую стратегию</text>
+            <text x="95" y="143" fontSize="9" fill="currentColor" fillOpacity="0.6">Соответствует ли идея текущим целям бизнеса?</text>
 
-            {/* Quadrant labels */}
-            {/* Top-left */}
-            <rect x="120" y="65" width="180" height="50" rx="8" fill="#7c3aed" fillOpacity="0.15" stroke="#7c3aed" strokeOpacity="0.3" strokeWidth="1" />
-            <text x="210" y="85" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">
-              ВОЗМОЖНОСТЬ
-            </text>
-            <text x="210" y="102" textAnchor="middle" fontSize="9" fill="#7c3aed" fillOpacity="0.7">
-              Высокая важность, низкая удовл.
-            </text>
+            {/* Arrow */}
+            <path d="M310 157 L310 173" stroke="#7c3aed" strokeOpacity="0.35" strokeWidth="1.5" />
+            <polygon points="306,170 310,178 314,170" fill="#7c3aed" fillOpacity="0.35" />
 
-            {/* Top-right */}
-            <rect x="340" y="65" width="180" height="50" rx="8" fill="#22c55e" fillOpacity="0.1" stroke="#22c55e" strokeOpacity="0.25" strokeWidth="1" />
-            <text x="430" y="85" textAnchor="middle" fontSize="12" fontWeight="700" fill="#22c55e">
-              ПОДДЕРЖИВАТЬ
-            </text>
-            <text x="430" y="102" textAnchor="middle" fontSize="9" fill="#22c55e" fillOpacity="0.7">
-              Высокая важность, высокая удовл.
-            </text>
+            {/* Step 3 */}
+            <rect x="40" y="180" width="540" height="52" rx="10" fill="#7c3aed" fillOpacity="0.18" stroke="#7c3aed" strokeOpacity="0.4" strokeWidth="1" />
+            <circle cx="70" cy="206" r="14" fill="#7c3aed" fillOpacity="0.3" />
+            <text x="70" y="211" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">3</text>
+            <text x="95" y="202" fontSize="11" fontWeight="600" fill="#7c3aed">ABCDX-сегментация + RAT для сегментов</text>
+            <text x="95" y="218" fontSize="9" fill="currentColor" fillOpacity="0.6">Кто клиенты? Какие самые рискованные допущения?</text>
 
-            {/* Bottom-left */}
-            <rect x="120" y="255" width="180" height="50" rx="8" fill="currentColor" fillOpacity="0.06" stroke="currentColor" strokeOpacity="0.12" strokeWidth="1" />
-            <text x="210" y="275" textAnchor="middle" fontSize="12" fontWeight="600" fill="currentColor" fillOpacity="0.7">
-              НИЗКИЙ ПРИОРИТЕТ
-            </text>
-            <text x="210" y="292" textAnchor="middle" fontSize="9" fill="currentColor" fillOpacity="0.55">
-              Низкая важность, низкая удовл.
-            </text>
+            {/* Arrow */}
+            <path d="M310 232 L310 248" stroke="#7c3aed" strokeOpacity="0.4" strokeWidth="1.5" />
+            <polygon points="306,245 310,253 314,245" fill="#7c3aed" fillOpacity="0.4" />
 
-            {/* Bottom-right */}
-            <rect x="340" y="255" width="180" height="50" rx="8" fill="#f59e0b" fillOpacity="0.1" stroke="#f59e0b" strokeOpacity="0.25" strokeWidth="1" />
-            <text x="430" y="275" textAnchor="middle" fontSize="12" fontWeight="600" fill="#f59e0b">
-              ИЗБЫТОЧНОСТЬ
-            </text>
-            <text x="430" y="292" textAnchor="middle" fontSize="9" fill="#f59e0b" fillOpacity="0.7">
-              Низкая важность, высокая удовл.
-            </text>
+            {/* Step 4 */}
+            <rect x="40" y="255" width="540" height="52" rx="10" fill="#7c3aed" fillOpacity="0.25" stroke="#7c3aed" strokeOpacity="0.45" strokeWidth="1" />
+            <circle cx="70" cy="281" r="14" fill="#7c3aed" fillOpacity="0.35" />
+            <text x="70" y="286" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">4</text>
+            <text x="95" y="277" fontSize="11" fontWeight="600" fill="#7c3aed">UX / решенческие интервью</text>
+            <text x="95" y="293" fontSize="9" fill="currentColor" fillOpacity="0.6">Как наша гипотеза показывает себя в реальности?</text>
 
-            {/* Example dots */}
-            {/* Opportunity zone */}
-            <circle cx="175" cy="155" r="8" fill="#7c3aed" fillOpacity="0.6" />
-            <text x="175" y="159" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">A</text>
-            <circle cx="240" cy="180" r="8" fill="#7c3aed" fillOpacity="0.5" />
-            <text x="240" y="184" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">B</text>
-            <circle cx="155" cy="195" r="8" fill="#7c3aed" fillOpacity="0.4" />
-            <text x="155" y="199" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">C</text>
+            {/* Arrow */}
+            <path d="M310 307 L310 323" stroke="#7c3aed" strokeOpacity="0.45" strokeWidth="1.5" />
+            <polygon points="306,320 310,328 314,320" fill="#7c3aed" fillOpacity="0.45" />
 
-            {/* Keep up zone */}
-            <circle cx="420" cy="160" r="8" fill="#22c55e" fillOpacity="0.5" />
-            <text x="420" y="164" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">D</text>
-            <circle cx="480" cy="140" r="8" fill="#22c55e" fillOpacity="0.5" />
-            <text x="480" y="144" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">E</text>
-
-            {/* Low priority zone */}
-            <circle cx="200" cy="360" r="8" fill="currentColor" fillOpacity="0.2" />
-            <text x="200" y="364" textAnchor="middle" fontSize="9" fontWeight="700" fill="currentColor" fillOpacity="0.6">F</text>
-
-            {/* Overkill zone */}
-            <circle cx="430" cy="370" r="8" fill="#f59e0b" fillOpacity="0.4" />
-            <text x="430" y="374" textAnchor="middle" fontSize="9" fontWeight="700" fill="white">G</text>
-
-            {/* Axis labels */}
-            {/* Y-axis: Importance */}
-            <text x="55" y="245" textAnchor="middle" fontSize="11" fontWeight="600" fill="currentColor" fillOpacity="0.7" transform="rotate(-90 55 245)">
-              Важность
-            </text>
-            <text x="80" y="68" textAnchor="end" fontSize="9" fill="currentColor" fillOpacity="0.6">Выс.</text>
-            <text x="80" y="435" textAnchor="end" fontSize="9" fill="currentColor" fillOpacity="0.6">Низ.</text>
-
-            {/* X-axis: Satisfaction */}
-            <text x="320" y="465" textAnchor="middle" fontSize="11" fontWeight="600" fill="currentColor" fillOpacity="0.7">
-              Удовлетворённость
-            </text>
-            <text x="100" y="452" textAnchor="start" fontSize="9" fill="currentColor" fillOpacity="0.6">Низкая</text>
-            <text x="540" y="452" textAnchor="end" fontSize="9" fill="currentColor" fillOpacity="0.6">Высокая</text>
-
-            {/* Arrows on axes */}
-            <path d="M90 430 L90 55 L86 65 M90 55 L94 65" stroke="currentColor" strokeOpacity="0.35" strokeWidth="1.5" />
-            <path d="M100 440 L535 440 L525 436 M535 440 L525 444" stroke="currentColor" strokeOpacity="0.35" strokeWidth="1.5" />
-
-            {/* Legend */}
-            <text x="300" y="490" textAnchor="middle" fontSize="10" fill="currentColor" fillOpacity="0.6">
-              Фокусируйтесь на квадранте &laquo;Возможность&raquo; -- там максимальный потенциал роста
-            </text>
+            {/* Step 5 */}
+            <rect x="40" y="330" width="540" height="52" rx="10" fill="#22c55e" fillOpacity="0.12" stroke="#22c55e" strokeOpacity="0.35" strokeWidth="1" />
+            <circle cx="70" cy="356" r="14" fill="#22c55e" fillOpacity="0.25" />
+            <text x="70" y="361" textAnchor="middle" fontSize="12" fontWeight="700" fill="#22c55e">5</text>
+            <text x="95" y="352" fontSize="11" fontWeight="600" fill="#22c55e">Оцениваем стоимость реализации с командой</text>
+            <text x="95" y="368" fontSize="9" fill="currentColor" fillOpacity="0.6">Сколько стоит? Окупится ли? Решение: делаем / не делаем</text>
           </svg>
         </div>
       </motion.div>
 
-      {/* --- 4 шага для роста --- */}
+      {/* --- Детальный разбор 5 шагов --- */}
       <motion.div variants={fadeInItem} className="mb-8">
-        <h2 className="text-xl font-semibold mb-4">4 шага: от работы к требованиям</h2>
+        <h2 className="text-xl font-semibold mb-4">Разбор каждого шага алгоритма</h2>
         <div className="grid gap-3">
           {[
             {
               step: '1',
-              title: 'Проведите интервью «проведите меня через»',
-              desc: 'Попросите респондентов пошагово рассказать, как они в последний раз выполняли работу. Фиксируйте каждый шаг, инструменты и проблемы.',
+              title: 'Формулируем гипотезу/идею для развития',
+              desc: 'Откуда берутся идеи? Из JTBD-интервью с текущими пользователями, из анализа смежных работ, из обратной связи, из данных аналитики. Каждая идея должна быть привязана к конкретной работе клиента: «хочу + глагол». Например, Slack начинал как чат, но увидел смежную работу — «хочу автоматизировать рутинные процессы» — и вырос в платформу для рабочих процессов.',
             },
             {
               step: '2',
-              title: 'Разбейте на Small Jobs → Micro Jobs',
-              desc: 'Из интервью выделите шаги работы (Small Jobs). Детализируйте каждый шаг до элементарных действий (Micro Jobs).',
+              title: 'Смотрим на метрики и соотносим с продуктовой стратегией',
+              desc: 'Не каждая хорошая идея подходит вашему продукту. Проверьте: двигает ли она ключевую метрику (ретеншн, выручку, конверсию)? Вписывается ли в стратегию компании? Яндекс.Еда расширилась с доставки из ресторанов на продукты и аптеки — это вписывалось в стратегию «стать платформой для всех доставок».',
             },
             {
               step: '3',
-              title: 'Рассчитайте Problem Score для каждой проблемы',
-              desc: 'Для каждой проблемы на каждом шаге: средняя эмоция × средняя частота. Отсортируйте от высшего к низшему.',
+              title: 'Проводим ABCDX-сегментацию и выписываем RAT',
+              desc: 'Определите, для какого сегмента клиентов эта идея наиболее ценна. Проведите ABCDX-сегментацию: кто идеальные клиенты (A), кто с возражениями (B), кто сложные (C), кто неконвертируемые (D), кто будущие идеальные (X)? Для каждого сегмента выпишите RAT — самое рискованное допущение, которое нужно проверить первым.',
             },
             {
               step: '4',
-              title: 'Переведите проблемы в требования',
-              desc: 'Каждая проблема с высоким Problem Score становится требованием к продукту. Выберите механику ценности: убить работу, автоматизировать, сократить задержку и т.д.',
+              title: 'Проводим UX / решенческие интервью',
+              desc: 'Покажите прототип или опишите решение целевым пользователям. Как они реагируют? Понимают ли ценность? Готовы ли «нанять» это решение вместо текущего? Spotify тестировала новые фичи на разных сегментах пользователей, приоритизируя те функции, которые резонировали с сегментами A и X.',
+            },
+            {
+              step: '5',
+              title: 'Оцениваем стоимость реализации с командой',
+              desc: 'Сведите данные со всех шагов: ценность для клиента, размер сегмента, стоимость разработки, время до запуска. Обсудите с командой: при текущих ресурсах — делаем или не делаем? Какой ROI? Какие альтернативы?',
             },
           ].map((s) => (
             <div
@@ -269,19 +166,108 @@ export default function Module6() {
         </div>
       </motion.div>
 
+      {/* --- Примеры реальных продуктов --- */}
+      <motion.div variants={fadeInItem} className="mb-10 p-6 rounded-xl bg-card border border-border/50">
+        <div className="flex items-center gap-2 mb-4">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-accent">
+            <path d="M10 2L13 8H18L14 12L15.5 18L10 14.5L4.5 18L6 12L2 8H7L10 2Z" stroke="currentColor" strokeWidth="1.3" fill="none" />
+          </svg>
+          <h3 className="text-base font-semibold">Примеры: как продукты росли через смежные работы</h3>
+        </div>
+        <div className="space-y-4">
+          {[
+            {
+              product: 'Slack',
+              job: '«Хочу быстро координировать работу команды»',
+              growth: 'Начали с чата, но заметили, что пользователи пытаются автоматизировать процессы через бота. Вырастили платформу воркфлоу: интеграции, автоматизации, каналы для процессов. Работа сместилась с «хочу общаться» к «хочу организовать рабочий процесс».',
+            },
+            {
+              product: 'Яндекс.Еда',
+              job: '«Хочу быстро получить то, что мне нужно, без похода в магазин»',
+              growth: 'Начали с доставки из ресторанов. Увидели смежную работу — «хочу купить продукты, не выходя из дома». Затем добавили аптеки, цветы, товары из магазинов. Каждое расширение — это новый сегмент X, ставший сегментом A.',
+            },
+            {
+              product: 'Spotify',
+              job: '«Хочу слушать музыку, которая мне нравится»',
+              growth: 'Использовали подход, похожий на ABCDX: сегмент A (активные слушатели) хотел персонализацию — появились Discover Weekly и Daily Mix. Сегмент X (подкастеры и их слушатели) имел потребность, но продукт её не обслуживал — добавили подкасты, что открыло новый рынок.',
+            },
+          ].map((item, i) => (
+            <div key={i} className="p-4 rounded-lg bg-muted/30">
+              <div className="flex items-center gap-2 mb-2">
+                <p className="text-xs font-medium text-accent uppercase tracking-wider">{item.product}</p>
+                <span className="text-xs text-muted-foreground italic">{item.job}</span>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">{item.growth}</p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
       {/* --- ABCDX-сегментация --- */}
       <motion.div variants={fadeInItem} className="mb-10">
-        <h2 className="text-xl font-semibold mb-3">ABCDX-сегментация: какие клиенты ценнее всего</h2>
+        <h2 className="text-xl font-semibold mb-3">ABCDX-сегментация: на каких клиентов тратить ресурсы</h2>
         <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-          Когда у продукта уже есть платящие пользователи, нужно понять, на каких клиентов тратить
-          ресурсы развития. Метод <strong className="text-foreground">ABCDX-сегментации</strong>,
-          разработанный Ильёй Красинским во время работы в акселераторе ФРИИ и протестированный на сотнях
-          стартапов, классифицирует клиентов по ценности для бизнеса и стоимости обслуживания.
-        </p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+          Ключевой инструмент шага 3 &mdash; <strong className="text-foreground">ABCDX-сегментация</strong>.
+          Она делит клиентов по ценности для бизнеса и показывает, куда направлять ресурсы.
           Главный инсайт: <strong className="text-foreground">80% выручки приходится на сегменты A и B,
-          но компании тратят 80% усилий на сегменты C и D</strong>. ABCDX делает этот дисбаланс видимым.
+          но компании часто тратят 80% усилий на C и D</strong>.
         </p>
+
+        {/* SVG: ABCDX visual */}
+        <div className="w-full overflow-x-auto mb-6">
+          <svg
+            viewBox="0 0 600 280"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full max-w-xl mx-auto"
+          >
+            <rect x="0" y="0" width="600" height="280" rx="16" fill="currentColor" fillOpacity="0.03" />
+
+            {/* Bars representing segment value */}
+            {/* A */}
+            <rect x="60" y="40" width="80" height="180" rx="8" fill="#22c55e" fillOpacity="0.2" stroke="#22c55e" strokeOpacity="0.4" strokeWidth="1" />
+            <text x="100" y="75" textAnchor="middle" fontSize="24" fontWeight="800" fill="#22c55e">A</text>
+            <text x="100" y="95" textAnchor="middle" fontSize="8" fontWeight="600" fill="#22c55e">Идеальные</text>
+            <text x="100" y="115" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">Быстро, много,</text>
+            <text x="100" y="126" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">амбассадоры</text>
+
+            {/* B */}
+            <rect x="160" y="70" width="80" height="150" rx="8" fill="#7c3aed" fillOpacity="0.15" stroke="#7c3aed" strokeOpacity="0.35" strokeWidth="1" />
+            <text x="200" y="105" textAnchor="middle" fontSize="24" fontWeight="800" fill="#7c3aed">B</text>
+            <text x="200" y="125" textAnchor="middle" fontSize="8" fontWeight="600" fill="#7c3aed">Хорошие</text>
+            <text x="200" y="145" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">С возражениями,</text>
+            <text x="200" y="156" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">но стабильные</text>
+
+            {/* C */}
+            <rect x="260" y="110" width="80" height="110" rx="8" fill="#f59e0b" fillOpacity="0.12" stroke="#f59e0b" strokeOpacity="0.3" strokeWidth="1" />
+            <text x="300" y="145" textAnchor="middle" fontSize="24" fontWeight="800" fill="#f59e0b">C</text>
+            <text x="300" y="165" textAnchor="middle" fontSize="8" fontWeight="600" fill="#f59e0b">Сложные</text>
+            <text x="300" y="180" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">Долго, мало,</text>
+            <text x="300" y="191" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">нагружают</text>
+
+            {/* D */}
+            <rect x="360" y="160" width="80" height="60" rx="8" fill="#ef4444" fillOpacity="0.1" stroke="#ef4444" strokeOpacity="0.25" strokeWidth="1" />
+            <text x="400" y="185" textAnchor="middle" fontSize="24" fontWeight="800" fill="#ef4444">D</text>
+            <text x="400" y="205" textAnchor="middle" fontSize="8" fontWeight="600" fill="#ef4444">Неконверт.</text>
+
+            {/* X */}
+            <rect x="460" y="40" width="80" height="180" rx="8" fill="#7c3aed" fillOpacity="0.08" stroke="#7c3aed" strokeOpacity="0.4" strokeWidth="1" strokeDasharray="6 3" />
+            <text x="500" y="75" textAnchor="middle" fontSize="24" fontWeight="800" fill="#7c3aed">X</text>
+            <text x="500" y="95" textAnchor="middle" fontSize="8" fontWeight="600" fill="#7c3aed">Будущие</text>
+            <text x="500" y="110" textAnchor="middle" fontSize="8" fontWeight="600" fill="#7c3aed">идеальные</text>
+            <text x="500" y="130" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">Есть потребность,</text>
+            <text x="500" y="141" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">продукт не</text>
+            <text x="500" y="152" textAnchor="middle" fontSize="7" fill="currentColor" fillOpacity="0.5">обслуживает</text>
+
+            {/* Arrow from X to A */}
+            <path d="M500 225 C500 260 100 260 100 225" stroke="#7c3aed" strokeWidth="1.2" strokeDasharray="4 3" fill="none" />
+            <polygon points="96,228 100,220 104,228" fill="#7c3aed" fillOpacity="0.5" />
+            <text x="300" y="258" textAnchor="middle" fontSize="9" fontWeight="500" fill="#7c3aed">X становятся будущими A: стратегический вектор роста</text>
+
+            {/* Bottom label */}
+            <text x="300" y="278" textAnchor="middle" fontSize="9" fill="currentColor" fillOpacity="0.5">Высота столбца = ценность сегмента для бизнеса</text>
+          </svg>
+        </div>
 
         {/* Segment Cards */}
         <div className="grid gap-3 mb-6">
@@ -289,35 +275,35 @@ export default function Module6() {
             {
               segment: 'A',
               title: 'Идеальные клиенты',
-              desc: 'Продукт остро нужен. Покупают быстро, платят много, редко обращаются в поддержку. Амбассадоры бренда.',
+              desc: 'Продукт остро нужен. Покупают быстро, платят много, редко обращаются в поддержку. Амбассадоры бренда — рекомендуют другим без просьбы.',
               color: 'bg-success/10 border-success/20 text-success',
               badge: 'bg-success/15 text-success',
             },
             {
               segment: 'B',
               title: 'Хорошие клиенты с возражениями',
-              desc: 'Продукт нужен, но есть сомнения или чего-то не хватает. Средний цикл сделки, платят стабильно после убеждения.',
+              desc: 'Продукт нужен, но есть сомнения или чего-то не хватает. Средний цикл сделки, платят стабильно после убеждения. Доработки для B часто повышают конверсию для всех.',
               color: 'bg-accent/10 border-accent/20 text-accent',
               badge: 'bg-accent/15 text-accent',
             },
             {
               segment: 'C',
               title: 'Сложные клиенты',
-              desc: 'Спрос есть, но не обязательно на ваш продукт. Долгий цикл, маленький чек, постоянные проблемы, нагружают поддержку непропорционально выручке.',
+              desc: 'Долгий цикл сделки, маленький чек, постоянные обращения в поддержку. Нагружают команду непропорционально выручке. Часто требуют кастомных доработок.',
               color: 'bg-warning/10 border-warning/20 text-warning',
               badge: 'bg-warning/15 text-warning',
             },
             {
               segment: 'D',
               title: 'Неконвертируемые',
-              desc: 'Много вопросов, много возражений, сделки почти не закрываются. Ещё не столкнулись с проблемой, которую решает продукт.',
+              desc: 'Много вопросов, много возражений, сделки почти не закрываются. Ещё не столкнулись с работой, которую решает продукт, или работа для них неприоритетна.',
               color: 'bg-error/10 border-error/20 text-error',
               badge: 'bg-error/15 text-error',
             },
             {
               segment: 'X',
               title: 'Будущие идеальные клиенты',
-              desc: 'Ведут себя как сегмент A (готовы платить, есть острая потребность), но продукт в текущем виде их не обслуживает. Стратегический ориентир для развития.',
+              desc: 'Ведут себя как сегмент A (готовы платить, есть острая потребность), но продукт в текущем виде их не обслуживает. Стратегический ориентир для развития продукта.',
               color: 'bg-accent/10 border-accent/20 text-accent',
               badge: 'bg-accent/15 text-accent',
             },
@@ -337,118 +323,195 @@ export default function Module6() {
           ))}
         </div>
 
-        {/* How to apply */}
-        <div className="p-5 rounded-xl bg-muted/50 border border-border/50 mb-4">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-            Как применять ABCDX
-          </p>
-          <div className="space-y-2 text-sm text-muted-foreground">
-            <p><strong className="text-foreground">1. Выгрузите данные</strong> — кумулятивная маржа, частота покупок, нагрузка на поддержку по каждому клиенту.</p>
-            <p><strong className="text-foreground">2. Классифицируйте</strong> — распределите клиентов по сегментам A-D на основе данных и интервью с командой продаж.</p>
-            <p><strong className="text-foreground">3. Найдите сегмент X</strong> — среди тех, кто хотел купить, но не смог (ушёл на этапе онбординга, отказался из-за отсутствия фичи).</p>
-            <p><strong className="text-foreground">4. Перенаправьте ресурсы</strong> — 80% усилий на A и B (поддержка выручки), продуктовое развитие — в сторону X (рост).</p>
-          </div>
-        </div>
-
-        {/* ABCDX + JTBD connection */}
+        {/* ABCDX + Strategy */}
         <div className="p-4 rounded-xl bg-accent/5 border border-accent/15">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">ABCDX + JTBD:</strong> ABCDX показывает <em>кто</em> ценнее
-            всего, JTBD объясняет <em>почему</em> они покупают. Проведите JTBD-интервью с сегментом A,
-            чтобы понять их Core Job, затем с сегментом X, чтобы узнать, какую работу продукт пока не
-            выполняет. Это даёт точный вектор для развития продукта: укреплять ядро (A/B) и расти
-            в сторону X.
+            <strong className="text-foreground">Стратегия на основе ABCDX:</strong> направляйте 80%
+            ресурсов поддержки на сегменты A и B (они приносят основную выручку). Продуктовое развитие
+            направляйте в сторону сегмента X &mdash; это ваш вектор роста. Сегменты C и D &mdash;
+            сознательно де-приоритизируйте, не тратьте на них ресурсы развития.
           </p>
         </div>
       </motion.div>
 
-      {/* --- Квиз --- */}
+      {/* --- RAT (Riskiest Assumption Test) --- */}
+      <motion.div variants={fadeInItem} className="mb-10">
+        <h2 className="text-xl font-semibold mb-3">RAT: Riskiest Assumption Test</h2>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          После ABCDX-сегментации для каждого приоритетного сегмента выпишите{' '}
+          <strong className="text-foreground">RAT &mdash; самое рискованное допущение</strong>,
+          которое нужно проверить в первую очередь. RAT &mdash; это гипотеза, которая, если окажется
+          ложной, обрушит всю идею.
+        </p>
+        <div className="grid gap-3 mb-4">
+          {[
+            {
+              segment: 'A',
+              rat: 'Текущие идеальные клиенты действительно используют новую фичу, а не просто говорят, что хотят.',
+              test: 'Показать прототип 5 клиентам из сегмента A — попросить выполнить задачу.',
+            },
+            {
+              segment: 'B',
+              rat: 'Возражения сегмента B снимаются именно этой доработкой, а не чем-то другим.',
+              test: 'Провести решенческие интервью: покажите решение и спросите, снимает ли оно конкретное возражение.',
+            },
+            {
+              segment: 'X',
+              rat: 'У сегмента X достаточно платёжеспособности и готовности платить за решение их работы.',
+              test: 'Запустить лендинг или pre-sale и измерить конверсию в предоплату / заявку.',
+            },
+          ].map((item) => (
+            <div key={item.segment} className="p-4 rounded-lg border border-border/50 bg-card">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-0.5 rounded-md bg-accent/10 text-accent text-xs font-bold">
+                  Сегмент {item.segment}
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                <strong className="text-foreground">RAT:</strong> {item.rat}
+              </p>
+              <p className="text-sm text-muted-foreground mt-1">
+                <strong className="text-foreground">Как проверить:</strong> {item.test}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="p-5 rounded-xl bg-muted/50 border border-border/50">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+            Принцип RAT
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Не проверяйте всё подряд. Найдите <strong className="text-foreground">одно допущение</strong>,
+            без которого вся идея не имеет смысла. Проверьте его быстро и дёшево. Если допущение
+            подтвердилось &mdash; переходите к следующему шагу. Если нет &mdash; отбросьте идею
+            и вернитесь к шагу 1.
+          </p>
+        </div>
+      </motion.div>
+
+      {/* --- Типичная ошибка --- */}
+      <motion.div variants={fadeInItem} className="mb-8">
+        <div className="p-5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+          <div className="flex items-start gap-3">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="flex-shrink-0 mt-0.5">
+              <path d="M10 2L18 17H2L10 2Z" stroke="#f59e0b" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="M10 8V12" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round" />
+              <circle cx="10" cy="14.5" r="0.75" fill="#f59e0b" />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-foreground mb-1">Частая ошибка: пропускать шаги</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Команды часто прыгают от идеи (шаг 1) сразу к оценке стоимости (шаг 5), пропуская
+                валидацию. Или проводят ABCDX-сегментацию, но не выписывают RAT и не проверяют
+                допущения. Каждый шаг алгоритма существует по причине &mdash; пропуск любого
+                из них повышает риск построить фичу, которая никому не нужна.
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* --- Quiz: ABCDX --- */}
       <motion.div variants={fadeInItem}>
         <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
           Проверьте себя
         </h3>
         <Quiz
-          question="Проблема «долго искать свободное время для встречи» получила среднюю эмоцию 4.2 и среднюю частоту 4.8. Чему равен Problem Score?"
+          question="Клиенты сегмента X в ABCDX-сегментации — это:"
           options={[
             {
-              text: '9.0 (по формуле 4.2 + 4.8)',
+              text: 'Клиенты, которые уже ушли к конкурентам и не вернутся',
               explanation:
-                'Problem Score — это произведение, а не сумма. Формула: средняя эмоция × средняя частота.',
+                'Сегмент X — это не ушедшие клиенты. Это потенциальные идеальные клиенты, у которых есть острая потребность, но ваш продукт в текущем виде её не обслуживает.',
             },
             {
-              text: '20.16 (по формуле 4.2 × 4.8)',
+              text: 'Будущие идеальные клиенты — есть потребность (работа), но продукт пока не обслуживает их работу',
               correct: true,
               explanation:
-                'Верно! PS = 4.2 × 4.8 = 20.16. Это очень высокий скор из максимальных 25, что означает приоритетное требование к продукту.',
+                'Верно! Сегмент X — стратегический ориентир для развития продукта. Они ведут себя как сегмент A (готовы платить, есть острая работа), но продукт в текущем виде их не обслуживает. Развитие в сторону X — это вектор роста.',
             },
             {
-              text: '0.6 (по формуле 4.8 - 4.2)',
+              text: 'Экспериментальные пользователи на бесплатном тарифе',
               explanation:
-                'Разница эмоции и частоты не используется в Problem Score. Формула: средняя эмоция × средняя частота.',
+                'Бесплатные пользователи могут быть в любом сегменте. X — это про наличие работы, которую продукт пока не выполняет, а не про тариф.',
             },
             {
-              text: '4.5 (среднее между 4.2 и 4.8)',
+              text: 'Клиенты с самым высоким чеком',
               explanation:
-                'Среднее арифметическое не даёт Problem Score. Нужно произведение: эмоция × частота.',
+                'Высокий чек характерен для сегмента A (идеальные клиенты). Сегмент X — это клиенты с потребностью, которую продукт пока не может обслужить.',
             },
           ]}
         />
       </motion.div>
 
-      {/* --- DragDrop: приоритизация фич --- */}
+      {/* --- DragDrop: соотнесите сегменты ABCDX --- */}
       <motion.div variants={fadeInItem}>
         <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-          Практика: расставьте приоритеты
+          Практика: соотнесите сегменты с описаниями
         </h3>
         <p className="text-sm text-muted-foreground mb-3">
-          Перед вами четыре возможные фичи для календарного приложения. Расставьте их
-          по приоритету на основе Opportunity Score (от высшего к низшему).
+          Перетащите описание клиента в правильный сегмент ABCDX.
         </p>
         <DragDrop
-          instruction="Перетащите требования в порядке приоритета по Problem Score (наивысший — первый)."
+          instruction="Сопоставьте каждое описание клиента с его сегментом."
           items={[
-            { id: 'f1', text: 'Автоподбор свободного времени (PS: 22.1)' },
-            { id: 'f2', text: 'Тёмная тема интерфейса (PS: 4.2)' },
-            { id: 'f3', text: 'Умные напоминания (PS: 18.5)' },
-            { id: 'f4', text: 'Интеграция с видеозвонками (PS: 15.8)' },
+            { id: 'i1', text: 'Покупает быстро, платит много, рекомендует друзьям' },
+            { id: 'i2', text: 'Долгий цикл, маленький чек, постоянно в поддержке' },
+            { id: 'i3', text: 'Готов платить, но продукт не решает его работу' },
+            { id: 'i4', text: 'Нужен продукт, но есть сомнения и возражения' },
+            { id: 'i5', text: 'Много вопросов, сделки почти не закрываются' },
           ]}
           zones={[
-            { id: 'z1', label: 'Приоритет 1', acceptIds: ['f1'] },
-            { id: 'z2', label: 'Приоритет 2', acceptIds: ['f3'] },
-            { id: 'z3', label: 'Приоритет 3', acceptIds: ['f4'] },
-            { id: 'z4', label: 'Приоритет 4', acceptIds: ['f2'] },
+            { id: 'zA', label: 'Сегмент A', acceptIds: ['i1'] },
+            { id: 'zB', label: 'Сегмент B', acceptIds: ['i4'] },
+            { id: 'zC', label: 'Сегмент C', acceptIds: ['i2'] },
+            { id: 'zD', label: 'Сегмент D', acceptIds: ['i5'] },
+            { id: 'zX', label: 'Сегмент X', acceptIds: ['i3'] },
           ]}
         />
       </motion.div>
 
-      {/* --- Сценарий --- */}
+      {/* --- ScenarioCard --- */}
       <motion.div variants={fadeInItem}>
         <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
           Сценарий
         </h3>
         <ScenarioCard
-          scenario="Вы -- продакт-менеджер устоявшегося продукта. Ретеншн падает: пользователи уходят через 3 месяца. Что делать?"
-          context="У вас есть данные аналитики, но причины оттока неясны. Команда предлагает три подхода."
+          scenario="Вы — продакт-менеджер сервиса онлайн-бухгалтерии для малого бизнеса. Вы получили много запросов на функцию управления складом. Как поступите по алгоритму развития?"
+          context="Запросы приходят от разных клиентов. Разработка займёт 3 месяца. Ваша стратегия — стать платформой для всех финансовых задач малого бизнеса."
           options={[
             {
-              text: 'Добавить программу лояльности с бонусами и скидками, чтобы мотивировать пользователей оставаться.',
+              text: 'Сразу берём в разработку — клиенты просят, значит, нужно делать.',
               outcome:
-                'Программа лояльности борется с симптомами, а не с причиной. Если продукт плохо выполняет работу пользователя, скидки лишь отложат уход. Вы потратите бюджет, но не решите корневую проблему.',
-              score: 1,
+                'Вы пропустили шаги 2-4 алгоритма. Непонятно, из какого сегмента приходят запросы (может быть, это сегмент C или D). Не проверено, соответствует ли это стратегии. Не проведён RAT. Риск потратить 3 месяца на фичу, которая не окупится.',
+              score: 0,
             },
             {
-              text: 'Провести AJTBD-интервью с ушедшими пользователями, понять, на какую работу они нанимали продукт, где он не справился, и на что они переключились.',
+              text: 'Проводим ABCDX-сегментацию запросов, выписываем RAT, проводим решенческие интервью с целевым сегментом, затем оцениваем стоимость.',
               outcome:
-                'Отличный подход! Интервью с ушедшими пользователями покажут: какую работу они пытались выполнить, в каком шаге продукт их подвёл и какое решение они «наняли» вместо вашего. Это даст точные данные для улучшений, которые напрямую повлияют на ретеншн.',
+                'Отлично! Вы следуете алгоритму. Сегментация покажет, кто именно просит (A/B или C/D). RAT поможет проверить ключевое допущение. Решенческие интервью покажут, будут ли клиенты реально использовать фичу. Только после этого — оценка стоимости и решение.',
               score: 3,
             },
             {
-              text: 'Посмотреть, что делают конкуренты, и скопировать их новые фичи, чтобы не отставать.',
+              text: 'Отказываем — управление складом не связано с бухгалтерией, это не наша работа.',
               outcome:
-                'Копирование фич конкурентов без понимания работ -- это гонка вооружений, которую невозможно выиграть. Конкуренты могут решать другие работы, и их фичи могут быть нерелевантны для ваших пользователей. Вы рискуете раздуть продукт бесполезными функциями.',
-              score: 0,
+                'Слишком поспешный отказ. Управление складом может быть смежной работой: «хочу контролировать остатки для учёта себестоимости». Нужно хотя бы проверить, вписывается ли это в стратегию (шаг 2) и какой сегмент просит (шаг 3).',
+              score: 1,
             },
           ]}
+        />
+      </motion.div>
+
+      {/* --- InputExercise --- */}
+      <motion.div variants={fadeInItem}>
+        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+          Упражнение
+        </h3>
+        <InputExercise
+          prompt="Выберите продукт, которым вы пользуетесь. Сформулируйте идею для его развития, привяжите её к работе клиента (формат «хочу + глагол»), определите целевой сегмент (A, B или X) и напишите RAT — самое рискованное допущение."
+          placeholder="Продукт: ... Идея: ... Работа: «хочу + глагол» Сегмент: ... RAT: ..."
+          hint="Хороший RAT — это допущение, без подтверждения которого вся идея не имеет смысла. Например: «Пользователи действительно готовы платить за эту функцию» или «Проблема возникает достаточно часто, чтобы оправдать отдельную фичу»."
+          exampleAnswer="Продукт: Notion. Идея: встроенный AI-ассистент для автозаполнения таблиц. Работа: «хочу быстро структурировать данные без ручного ввода». Сегмент: X — пользователи, которые ведут базы данных, но не программисты. RAT: пользователи доверят AI заполнять данные без ручной проверки каждой ячейки."
         />
       </motion.div>
 
@@ -456,11 +519,12 @@ export default function Module6() {
       <motion.div variants={fadeInItem} className="mt-10 p-5 rounded-xl bg-accent/5 border border-accent/15">
         <h3 className="text-sm font-semibold text-foreground mb-2">Ключевой вывод</h3>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          Исследование для продукта &mdash; это разбивка Core Job на Small Jobs → Micro Jobs,
-          поиск проблем на каждом шаге и их приоритизация через{' '}
-          <strong className="text-foreground">Problem Score</strong> (эмоция × частота).
-          Каждая проблема с высоким скором становится требованием к продукту, а механики ценности
-          из AJTBD подсказывают, как именно решить эту проблему.
+          Развитие существующего продукта &mdash; это системный процесс из 5 шагов:
+          от формулировки гипотезы через ABCDX-сегментацию и RAT к решенческим интервью
+          и оценке стоимости. <strong className="text-foreground">ABCDX-сегментация</strong> показывает,
+          на каких клиентов тратить ресурсы, а <strong className="text-foreground">RAT</strong> помогает
+          быстро и дёшево проверить самое рискованное допущение. Не пропускайте шаги &mdash; каждый
+          из них снижает риск построить то, что никому не нужно.
         </p>
       </motion.div>
     </ModuleWrapper>

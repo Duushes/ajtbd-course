@@ -4,6 +4,7 @@ import ModuleWrapper, { fadeInItem } from '@/components/ModuleWrapper';
 import Quiz from '@/components/Quiz';
 import DragDrop from '@/components/DragDrop';
 import InputExercise from '@/components/InputExercise';
+import ScenarioCard from '@/components/ScenarioCard';
 import { motion } from 'framer-motion';
 
 export default function Module1() {
@@ -45,11 +46,20 @@ export default function Module1() {
           выполнения определённой <strong className="text-foreground">работы</strong> (Job).
         </p>
         <p className="text-muted-foreground leading-relaxed mt-3">
-          <strong className="text-foreground">Работа (Job)</strong> &mdash; это прогресс,
-          которого человек хочет достичь в конкретных обстоятельствах. Человек находится
-          в <strong className="text-foreground">Точке А</strong> (текущая ситуация) и хочет
-          попасть в <strong className="text-foreground">Точку Б</strong> (желаемая ситуация).
-          Продукт &mdash; это инструмент, который он нанимает для этого перехода.
+          <strong className="text-foreground">Работа (Job)</strong> &mdash; цель/задача клиента: перейти
+          из <strong className="text-foreground">Точки А</strong> (контекст, триггер)
+          в <strong className="text-foreground">Точку Б</strong> (результат, позитивные эмоции).
+          Минимальная формула: <em>&laquo;хочу + глагол&raquo;</em>.
+        </p>
+        <p className="text-muted-foreground leading-relaxed mt-3">
+          <strong className="text-foreground">Решение (Solution)</strong> &mdash; всё, с помощью чего
+          человек выполняет работу: продукты, сервисы, собственные действия. Netflix, Excel, репетитор,
+          &laquo;попросить друга&raquo; &mdash; всё это решения.
+        </p>
+        <p className="text-muted-foreground leading-relaxed mt-3">
+          <strong className="text-foreground">Найм (Hiring)</strong> &mdash; акт выбора конкретного
+          решения для выполнения работы. &laquo;Человек нанял Яндекс Такси на работу быстро добраться
+          до офиса&raquo;.
         </p>
       </motion.div>
 
@@ -324,6 +334,86 @@ export default function Module1() {
             { id: 'zone-4', label: 'Шаг 4', acceptIds: ['step-buy'] },
             { id: 'zone-5', label: 'Шаг 5', acceptIds: ['step-use'] },
             { id: 'zone-6', label: 'Шаг 6', acceptIds: ['step-eval'] },
+          ]}
+        />
+      </motion.div>
+
+      {/* --- Пример: Яндекс Такси --- */}
+      <motion.div variants={fadeInItem} className="mb-10 p-6 rounded-xl bg-card border border-border/50">
+        <div className="flex items-center gap-2 mb-4">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-accent">
+            <rect x="2" y="10" width="16" height="7" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <circle cx="6" cy="17" r="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <circle cx="14" cy="17" r="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <path d="M4 10L6 4H14L16 10" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          </svg>
+          <h3 className="text-base font-semibold">Пример найма: Яндекс Такси</h3>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          Рассмотрим найм решения через призму AJTBD на примере Яндекс Такси:
+        </p>
+        <div className="space-y-3 text-sm">
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-error flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Работа:</strong> &laquo;Хочу быстро добраться до офиса&raquo; (хочу + глагол)
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-accent flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Точка А:</strong> Стою у дома утром, опаздываю, метро далеко
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-success flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Точка Б:</strong> Сижу в офисе вовремя, чувствую спокойствие
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-warning flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Найм:</strong> Человек нанимает Яндекс Такси на эту работу
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-muted-foreground flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Конкуренты (другие решения):</strong> метро, каршеринг, личное авто, велосипед, попросить подвезти
+            </span>
+          </div>
+        </div>
+        <div className="mt-4 p-3 rounded-lg bg-accent/5 border border-accent/20">
+          <p className="text-xs text-accent">
+            Все конкуренты &mdash; это решения одной и той же работы. Яндекс Такси конкурирует не только
+            с другими такси, но и с метро, каршерингом и даже с &laquo;попросить друга подвезти&raquo;.
+          </p>
+        </div>
+      </motion.div>
+
+      {/* --- ScenarioCard --- */}
+      <motion.div variants={fadeInItem} className="mb-8">
+        <h3 className="text-lg font-semibold mb-2">Сценарий: определите работу</h3>
+        <ScenarioCard
+          scenario="Утром в метро вы видите человека, который слушает аудиокнигу в наушниках. Какую работу он выполняет?"
+          context="Человек едет на работу, дорога занимает 40 минут. Он выбрал аудиокнигу среди множества других решений."
+          options={[
+            {
+              text: 'Работа: «хочу послушать книгу» — он выбрал конкретный формат контента',
+              outcome: 'Это описание решения, а не работы. «Послушать аудиокнигу» — это решение, а работа скрыта глубже. Нужно спросить: зачем? В каком контексте?',
+              score: 2,
+            },
+            {
+              text: 'Работа: «хочу провести время в дороге с пользой» — он нанимает аудиокнигу, чтобы не терять 40 минут впустую',
+              outcome: 'Отлично! Работа = «хочу + глагол». Контекст: 40 минут в метро без дела. Точка Б: ощущение продуктивного утра. Конкуренты этого решения: подкаст, новости, Telegram-каналы, медитация, сон.',
+              score: 10,
+            },
+            {
+              text: 'Работа: «хочу развлечься» — ему скучно в метро',
+              outcome: 'Близко, но неточно. «Развлечься» — это слишком общая работа. AJTBD требует конкретного контекста: именно в дороге, именно утром. Работа «провести время в дороге с пользой» точнее описывает ситуацию.',
+              score: 5,
+            },
           ]}
         />
       </motion.div>

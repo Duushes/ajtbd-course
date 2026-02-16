@@ -4,7 +4,7 @@ import ThemeToggle from './ThemeToggle';
 import { useCourse } from '@/context/CourseContext';
 
 export default function Header() {
-  const { currentModule, setCurrentModule, completedModules } = useCourse();
+  const { currentModule, setCurrentModule, completedModules, totalModules } = useCourse();
 
   return (
     <header className="sticky top-1 z-40 backdrop-blur-md bg-background/80 border-b border-border/50">
@@ -18,7 +18,7 @@ export default function Header() {
 
         <div className="flex items-center gap-1">
           <span className="text-xs text-muted-foreground mr-2 hidden sm:block">
-            {completedModules.size}/10 modules
+            {completedModules.size}/{totalModules} modules
           </span>
           <ThemeToggle />
         </div>

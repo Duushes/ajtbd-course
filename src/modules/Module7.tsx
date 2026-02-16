@@ -4,6 +4,7 @@ import ModuleWrapper, { fadeInItem } from '@/components/ModuleWrapper';
 import Quiz from '@/components/Quiz';
 import InputExercise from '@/components/InputExercise';
 import ScenarioCard from '@/components/ScenarioCard';
+import DragDrop from '@/components/DragDrop';
 import { motion } from 'framer-motion';
 
 export default function Module7() {
@@ -353,6 +354,37 @@ export default function Module7() {
           placeholder="Мы помогаем, когда ..., вы хотите ..., чтобы ..."
           hint="Подумайте: в какой конкретной ситуации человек осознаёт свою работу? Какими словами он описал бы свою проблему? Каким должен быть результат, чтобы он «нанял» ваш продукт?"
           exampleAnswer="Продукт: Notion. «Мы помогаем, когда ваши заметки разбросаны по десяткам приложений и вы не можете найти нужное, вы хотите собрать всё в одном месте и быстро находить информацию, чтобы работать спокойно и не тратить время на поиски»."
+        />
+      </motion.div>
+
+      {/* --- DragDrop: фазы коммуникации --- */}
+      <motion.div variants={fadeInItem} className="mt-6">
+        <h3 className="text-lg font-semibold mb-2">Упражнение: соотнесите действие с фазой</h3>
+        <DragDrop
+          instruction="Определите, к какой фазе коммуникации относится каждое маркетинговое действие."
+          items={[
+            { id: 'awareness', text: 'Статья «5 признаков, что вам пора менять CRM»' },
+            { id: 'search', text: 'Сравнительная таблица «Наш продукт vs конкуренты»' },
+            { id: 'purchase', text: 'Бесплатный 14-дневный триал без карты' },
+            { id: 'awareness2', text: 'Пост в соцсети: «Знакомо? 3 часа на отчёт, который можно сделать за 10 минут»' },
+          ]}
+          zones={[
+            {
+              id: 'zone-awareness',
+              label: 'Фаза осознания — человек ещё не ищет решение',
+              acceptIds: ['awareness', 'awareness2'],
+            },
+            {
+              id: 'zone-search',
+              label: 'Фаза поиска — человек сравнивает варианты',
+              acceptIds: ['search'],
+            },
+            {
+              id: 'zone-purchase',
+              label: 'Фаза покупки — снять последние барьеры',
+              acceptIds: ['purchase'],
+            },
+          ]}
         />
       </motion.div>
 

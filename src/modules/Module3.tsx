@@ -4,6 +4,7 @@ import ModuleWrapper, { fadeInItem } from '@/components/ModuleWrapper';
 import Quiz from '@/components/Quiz';
 import ScenarioCard from '@/components/ScenarioCard';
 import InputExercise from '@/components/InputExercise';
+import DragDrop from '@/components/DragDrop';
 import { motion } from 'framer-motion';
 
 export default function Module3() {
@@ -250,7 +251,53 @@ export default function Module3() {
         </div>
       </motion.div>
 
-      {/* --- Пример: как Notion работает с силами --- */}
+      {/* --- Пример: Netflix и четыре силы --- */}
+      <motion.div variants={fadeInItem} className="mb-10 p-6 rounded-xl bg-card border border-border/50">
+        <h3 className="text-base font-semibold mb-4">Кейс: Как Netflix победил видеопрокат</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          Netflix не просто заменил Blockbuster &mdash; он целенаправленно работал с каждой из четырёх сил переключения.
+          Разберём, как пользователи переключались с видеопроката на стриминг.
+        </p>
+        <div className="space-y-3 text-sm">
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-error flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Толчок:</strong> Штрафы за просрочку возврата дисков ($6 млрд/год по индустрии!),
+              пустые полки в магазине, поездка до проката в плохую погоду. Люди тратили 30+ минут на выбор и дорогу.
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-success flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Притяжение:</strong> Каталог из тысяч фильмов, рекомендации на основе вкусов,
+              смотри на любом устройстве, без рекламы. &laquo;Одна подписка &mdash; неограниченный контент&raquo;.
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-warning flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Инерция:</strong> &laquo;Я привык ходить в видеопрокат по пятницам, это ритуал&raquo;,
+              &laquo;Мне нравится физически держать диск и выбирать обложки&raquo;.
+            </span>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-error/60 flex-shrink-0 mt-1.5" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Тревога:</strong> &laquo;А вдруг интернет медленный и будет тормозить?&raquo;,
+              &laquo;Не будет нужного фильма&raquo;, &laquo;Непривычный интерфейс&raquo;.
+            </span>
+          </div>
+        </div>
+        <div className="mt-4 p-3 rounded-lg bg-accent/5 border border-accent/20">
+          <p className="text-xs text-accent">
+            <strong>Стратегия Netflix:</strong> Бесплатный первый месяц (снижает тревогу), никаких штрафов за просрочку (усиливает толчок от конкурента),
+            персональные рекомендации (усиливают притяжение), постепенный переход от DVD-по-почте к стримингу (снижает инерцию).
+            Результат: Blockbuster обанкротился в 2010 году.
+          </p>
+        </div>
+      </motion.div>
+
+      {/* --- Пример: как доставка еды работает с силами --- */}
       <motion.div variants={fadeInItem} className="mb-10 p-6 rounded-xl bg-card border border-border/50">
         <h3 className="text-base font-semibold mb-4">Пример: Как доставка еды работает с силами</h3>
         <div className="space-y-3 text-sm">
@@ -353,6 +400,42 @@ export default function Module3() {
           placeholder="Переключение: с ... на ... Толчок: ... Притяжение: ... Инерция: ... Тревога: ..."
           hint="Вспомните конкретную ситуацию. Даже если вы НЕ переключились — это тоже ценный пример (значит, инерция + тревога оказались сильнее)."
           exampleAnswer="Я думал о переходе с Google Docs на Notion. Толчок: документы разбросаны, нет структуры, трудно находить нужное. Притяжение: у Notion красивые шаблоны, базы данных, всё в одном месте. Инерция: вся команда уже в Google Docs, все привыкли. Тревога: а вдруг Notion окажется сложным, команда не захочет переучиваться, потеряем файлы. Итог: не переключился — инерция команды перевесила."
+        />
+      </motion.div>
+
+      {/* --- DragDrop: четыре силы --- */}
+      <motion.div variants={fadeInItem} className="mt-6">
+        <h3 className="text-lg font-semibold mb-2">Упражнение: определите силу</h3>
+        <DragDrop
+          instruction="Соотнесите каждое высказывание клиента с силой переключения, которая за ним стоит."
+          items={[
+            { id: 'push', text: '«Текущий CRM жутко тормозит, я теряю сделки»' },
+            { id: 'pull', text: '«У нового сервиса есть AI-ассистент — мечта!»' },
+            { id: 'inertia', text: '«Вся команда уже привыкла к старому инструменту»' },
+            { id: 'anxiety', text: '«А вдруг при миграции потеряем данные клиентов?»' },
+          ]}
+          zones={[
+            {
+              id: 'zone-push',
+              label: 'Толчок (Push) — боль от текущего решения',
+              acceptIds: ['push'],
+            },
+            {
+              id: 'zone-pull',
+              label: 'Притяжение (Pull) — привлекательность нового',
+              acceptIds: ['pull'],
+            },
+            {
+              id: 'zone-inertia',
+              label: 'Инерция (Inertia) — привычка к текущему',
+              acceptIds: ['inertia'],
+            },
+            {
+              id: 'zone-anxiety',
+              label: 'Тревога (Anxiety) — страх перед новым',
+              acceptIds: ['anxiety'],
+            },
+          ]}
         />
       </motion.div>
 

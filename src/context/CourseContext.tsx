@@ -22,7 +22,7 @@ interface CourseContextType extends CourseState {
 
 const CourseContext = createContext<CourseContextType | null>(null);
 
-const TOTAL_MODULES = 10;
+const TOTAL_MODULES = 9;
 const STORAGE_KEY = 'ajtbd-course-state';
 
 function loadState(): Partial<CourseState> {
@@ -33,7 +33,7 @@ function loadState(): Partial<CourseState> {
     const parsed = JSON.parse(saved);
     return {
       currentModule: parsed.currentModule ?? 0,
-      completedModules: new Set(parsed.completedModules ?? []),
+      completedModules: new Set((parsed.completedModules ?? []).filter((id: number) => id >= 1 && id <= TOTAL_MODULES)),
       moduleScores: parsed.moduleScores ?? {},
       examScore: parsed.examScore ?? null,
     };

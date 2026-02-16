@@ -55,7 +55,7 @@ export default function ModuleWrapper({ moduleIndex, title, subtitle, children, 
     >
       <motion.div variants={item} className="mb-10">
         <span className="text-xs font-medium text-accent uppercase tracking-widest">
-          Модуль {moduleIndex + 1} из {totalModules}
+          Модуль {moduleIndex} из {totalModules}
         </span>
         <h1 className="text-3xl sm:text-4xl font-bold mt-2 tracking-tight">{title}</h1>
         <div className="mt-3 h-0.5 w-16 rounded-full bg-gradient-to-r from-accent to-transparent" />
