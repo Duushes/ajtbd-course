@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCourse } from '@/context/CourseContext';
 import Confetti from '@/components/Confetti';
@@ -10,6 +10,7 @@ interface ExamQuestion {
   options: string[];
   correctIndex: number;
   explanation: string;
+  type?: 'ordering';
 }
 
 const questions: ExamQuestion[] = [
@@ -102,15 +103,17 @@ const questions: ExamQuestion[] = [
     explanation: 'JTBD-сегмент = работа + текущее решение. Демография не определяет сегмент. Если оба нанимают кофе на одну и ту же работу — они в одном сегменте.',
   },
   {
-    question: '9. Вы запускаете новый продукт. Какова правильная последовательность 5 шагов по AJTBD?',
+    question: '9. Вы запускаете новый продукт. Расставьте 5 шагов алгоритма AJTBD в правильном порядке.',
+    type: 'ordering',
     options: [
-      'Анализ рынка → Гипотеза → Оценка стоимости → Сегменты + RAT → UX-интервью',
-      'Гипотеза о работе → Анализ рынка → Сегменты + RAT → UX-интервью → Оценка стоимости',
-      'UX-интервью → Гипотеза → Сегменты + RAT → Анализ рынка → Оценка стоимости',
-      'Сегменты + RAT → Анализ рынка → Гипотеза → UX-интервью → Оценка стоимости',
+      'Гипотеза о работе клиента',
+      'Анализ рынка и бизнес-стратегии',
+      'Поиск сегментов + валидация + RAT',
+      'UX / решенческие интервью',
+      'Оценка стоимости реализации',
     ],
-    correctIndex: 1,
-    explanation: 'Алгоритм запуска нового продукта: 1) Гипотеза о работе клиента → 2) Анализ рынка и бизнес-стратегии → 3) Поиск сегментов, валидация, RAT → 4) UX/решенческие интервью → 5) Оценка стоимости с командой. Нельзя начинать с анализа рынка без гипотезы — не знаешь, что искать.',
+    correctIndex: 0,
+    explanation: 'Правильный порядок: 1) Гипотеза о работе → 2) Анализ рынка → 3) Сегменты + RAT → 4) UX-интервью → 5) Оценка стоимости. Нельзя начинать с анализа рынка без гипотезы — не знаешь, что искать.',
   },
   {
     question: '10. Что проверяет RAT (Riskiest Assumption Test)?',
@@ -168,15 +171,17 @@ const questions: ExamQuestion[] = [
     explanation: 'При высоком Retention и NPS ядро уже сильное, но Go Deeper (A) продолжает укреплять позицию. Go Wider (B) — естественный следующий шаг: adjacent jobs «купить продукты», «заказать цветы» близки к текущей работе. Go Higher (C) слишком рискован без проверки — Big Job «управлять бытом» требует совершенно других компетенций.',
   },
   {
-    question: '15. Вы развиваете существующий продукт. Какова правильная последовательность 5 шагов по AJTBD?',
+    question: '15. Вы развиваете существующий продукт. Расставьте 5 шагов алгоритма AJTBD в правильном порядке.',
+    type: 'ordering',
     options: [
-      'ABCDX + RAT → Метрики → UX-интервью → Гипотеза → Оценка стоимости',
-      'Метрики → Гипотеза → Оценка стоимости → ABCDX + RAT → UX-интервью',
-      'Гипотеза развития → Метрики и стратегия → ABCDX + RAT → UX-интервью → Оценка стоимости',
-      'UX-интервью → Метрики → Гипотеза → ABCDX + RAT → Оценка стоимости',
+      'Гипотеза / идея для развития',
+      'Метрики и продуктовая стратегия',
+      'ABCDX-сегментация + RAT',
+      'UX / решенческие интервью',
+      'Оценка стоимости реализации',
     ],
-    correctIndex: 2,
-    explanation: 'Алгоритм развития существующего продукта: 1) Гипотеза/идея для развития → 2) Метрики и продуктовая стратегия → 3) ABCDX-сегментация + RAT → 4) UX/решенческие интервью → 5) Оценка стоимости с командой. Сначала идея, потом проверка по метрикам — не наоборот.',
+    correctIndex: 0,
+    explanation: 'Правильный порядок: 1) Гипотеза → 2) Метрики и стратегия → 3) ABCDX + RAT → 4) UX-интервью → 5) Оценка стоимости. Сначала идея, потом проверка по метрикам — не наоборот.',
   },
 ];
 
@@ -187,6 +192,62 @@ export default function Module9() {
   const [showResults, setShowResults] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [orderState, setOrderState] = useState<number[]>([]);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const q = questions[currentQ];
+    if (q.type === 'ordering') {
+      const indices = q.options.map((_, i) => i);
+      for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+      }
+      if (indices.every((v, i) => v === i)) {
+        [indices[0], indices[1]] = [indices[1], indices[0]];
+      }
+      setOrderState(indices);
+    }
+    setDragOverIndex(null);
+  }, [currentQ]);
+
+  const moveItem = (fromIndex: number, direction: number) => {
+    const toIndex = fromIndex + direction;
+    if (toIndex < 0 || toIndex >= orderState.length) return;
+    const newOrder = [...orderState];
+    [newOrder[fromIndex], newOrder[toIndex]] = [newOrder[toIndex], newOrder[fromIndex]];
+    setOrderState(newOrder);
+  };
+
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', String(index));
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    setDragOverIndex(index);
+  };
+
+  const handleDrop = (e: React.DragEvent, toIndex: number) => {
+    e.preventDefault();
+    const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+    if (fromIndex === toIndex) { setDragOverIndex(null); return; }
+    const newOrder = [...orderState];
+    const item = newOrder.splice(fromIndex, 1)[0];
+    newOrder.splice(toIndex, 0, item);
+    setOrderState(newOrder);
+    setDragOverIndex(null);
+  };
+
+  const handleCheckOrder = () => {
+    const isCorrect = orderState.every((v, i) => v === i);
+    const newAnswers = [...answers];
+    newAnswers[currentQ] = isCorrect ? 0 : 1;
+    setAnswers(newAnswers);
+    setSelectedOption(isCorrect ? 0 : 1);
+    setShowExplanation(true);
+  };
 
   const score = answers.reduce<number>((acc, ans, i) => {
     if (ans === questions[i].correctIndex) return acc + 1;
@@ -373,32 +434,110 @@ export default function Module9() {
         >
           <p className="text-lg font-medium mb-6">{q.question}</p>
 
-          <div className="space-y-2">
-            {q.options.map((opt, i) => {
-              let style = 'border-border/50 hover:border-accent/50 cursor-pointer';
-              if (showExplanation) {
-                if (i === q.correctIndex) {
-                  style = 'border-success bg-success/5';
-                } else if (i === selectedOption && i !== q.correctIndex) {
-                  style = 'border-error bg-error/5';
-                } else {
-                  style = 'border-border/30 opacity-50';
-                }
-                style += ' cursor-default';
-              }
-
-              return (
+          {q.type === 'ordering' ? (
+            <div>
+              <p className="text-xs text-muted-foreground mb-3">Перетащите шаги или используйте стрелки для изменения порядка</p>
+              <div className="space-y-2">
+                {orderState.map((stepIndex, position) => (
+                  <div
+                    key={stepIndex}
+                    draggable={!showExplanation}
+                    onDragStart={(e) => handleDragStart(e, position)}
+                    onDragOver={(e) => handleDragOver(e, position)}
+                    onDrop={(e) => handleDrop(e, position)}
+                    onDragLeave={() => setDragOverIndex(null)}
+                    onDragEnd={() => setDragOverIndex(null)}
+                    className={`flex items-center gap-3 p-3.5 rounded-lg border transition-all select-none
+                      ${showExplanation
+                        ? stepIndex === position
+                          ? 'border-success bg-success/5'
+                          : 'border-error bg-error/5'
+                        : dragOverIndex === position
+                          ? 'border-accent bg-accent/5'
+                          : 'border-border/50 hover:border-accent/40'
+                      }
+                      ${!showExplanation ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}
+                    `}
+                  >
+                    <span className={`text-xs font-bold w-5 text-center flex-shrink-0 ${
+                      showExplanation
+                        ? stepIndex === position ? 'text-success' : 'text-error'
+                        : 'text-accent'
+                    }`}>{position + 1}</span>
+                    <span className="text-sm flex-1">{q.options[stepIndex]}</span>
+                    {!showExplanation && (
+                      <div className="flex flex-col gap-0.5 ml-2 flex-shrink-0">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); moveItem(position, -1); }}
+                          disabled={position === 0}
+                          className="text-muted-foreground hover:text-accent disabled:opacity-20 transition-colors cursor-pointer disabled:cursor-default p-0.5"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M3 8.5L7 4.5L11 8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); moveItem(position, 1); }}
+                          disabled={position === orderState.length - 1}
+                          className="text-muted-foreground hover:text-accent disabled:opacity-20 transition-colors cursor-pointer disabled:cursor-default p-0.5"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M3 5.5L7 9.5L11 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                      </div>
+                    )}
+                    {!showExplanation && (
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-muted-foreground/30 flex-shrink-0">
+                        <circle cx="5" cy="3" r="1" fill="currentColor" />
+                        <circle cx="9" cy="3" r="1" fill="currentColor" />
+                        <circle cx="5" cy="7" r="1" fill="currentColor" />
+                        <circle cx="9" cy="7" r="1" fill="currentColor" />
+                        <circle cx="5" cy="11" r="1" fill="currentColor" />
+                        <circle cx="9" cy="11" r="1" fill="currentColor" />
+                      </svg>
+                    )}
+                  </div>
+                ))}
+              </div>
+              {!showExplanation && (
                 <button
-                  key={i}
-                  onClick={() => handleSelect(i)}
-                  disabled={showExplanation}
-                  className={`w-full text-left p-4 rounded-lg border transition-all duration-200 disabled:opacity-100 ${style}`}
+                  onClick={handleCheckOrder}
+                  className="mt-4 px-6 py-2.5 bg-accent text-white text-sm font-medium rounded-lg
+                    hover:opacity-90 transition-opacity cursor-pointer"
                 >
-                  <span className="text-sm">{opt}</span>
+                  Проверить порядок
                 </button>
-              );
-            })}
-          </div>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {q.options.map((opt, i) => {
+                let style = 'border-border/50 hover:border-accent/50 cursor-pointer';
+                if (showExplanation) {
+                  if (i === q.correctIndex) {
+                    style = 'border-success bg-success/5';
+                  } else if (i === selectedOption && i !== q.correctIndex) {
+                    style = 'border-error bg-error/5';
+                  } else {
+                    style = 'border-border/30 opacity-50';
+                  }
+                  style += ' cursor-default';
+                }
+
+                return (
+                  <button
+                    key={i}
+                    onClick={() => handleSelect(i)}
+                    disabled={showExplanation}
+                    className={`w-full text-left p-4 rounded-lg border transition-all duration-200 disabled:opacity-100 ${style}`}
+                  >
+                    <span className="text-sm">{opt}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           <AnimatePresence>
             {showExplanation && (
