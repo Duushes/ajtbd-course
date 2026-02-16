@@ -332,8 +332,8 @@ export default function Module9() {
               </div>
               <p className="text-lg text-muted-foreground">{getMessage()}</p>
               <p className="text-base text-foreground font-medium mt-6 leading-relaxed">
-                Вы теперь знаете, что важно не просто пилить фичи.<br />
-                А решать задачи клиентов.
+                Вы теперь знаете, что не нужно просто пилить фичи.<br />
+                А нужно решать задачу пользователя.
               </p>
               {score >= 10 && (
                 <p className="text-sm text-accent mt-4">
