@@ -17,27 +17,13 @@ export default function Footer() {
     { label: 'Four Forces', author: 'Bob Moesta, Chris Spiek', note: 'Re-Wired Group' },
   ];
 
-  const tech = ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'];
-
   return (
     <footer className="border-t border-border/50 mt-20">
       <div className="max-w-4xl mx-auto px-6 py-8">
-        <div className="flex flex-col sm:flex-row sm:items-start gap-6">
-          {/* Disclaimer */}
-          <div className="flex-1 min-w-0">
-            <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
-              Некоммерческий образовательный проект. Не аффилирован с Иваном Замесиным.
-              Все методологии и товарные знаки принадлежат правообладателям.
-            </p>
-          </div>
-
-          {/* Tech stack */}
-          <div className="flex-shrink-0">
-            <p className="text-[11px] text-muted-foreground/50 leading-relaxed">
-              {tech.join(' · ')}
-            </p>
-          </div>
-        </div>
+        <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+          Некоммерческий образовательный проект. Не аффилирован с Иваном Замесиным.
+          Все методологии и товарные знаки принадлежат правообладателям.
+        </p>
 
         {/* Sources */}
         <details className="mt-4 group">
