@@ -216,7 +216,7 @@ export default function Module6() {
         {/* SVG: ABCDX visual */}
         <div className="w-full overflow-x-auto mb-6">
           <svg
-            viewBox="0 0 600 280"
+            viewBox="0 0 600 295"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="w-full max-w-xl mx-auto"

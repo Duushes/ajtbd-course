@@ -201,7 +201,7 @@ export default function Module7() {
 
         {/* SVG: Communication Research Questions */}
         <div className="flex justify-center my-8">
-          <svg viewBox="0 0 440 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-sm">
+          <svg viewBox="0 0 480 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-sm">
             {/* Funnel shape */}
             <path d="M60 20 L340 20 L280 100 L120 100 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.08" />
             <path d="M120 100 L280 100 L250 170 L150 170 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.12" />
