@@ -8,6 +8,7 @@ interface CourseState {
   moduleScores: Record<number, number>;
   examScore: number | null;
   theme: 'light' | 'dark';
+  openCheatSheet: boolean;
 }
 
 interface CourseContextType extends CourseState {
@@ -16,6 +17,7 @@ interface CourseContextType extends CourseState {
   setModuleScore: (module: number, score: number) => void;
   setExamScore: (score: number) => void;
   toggleTheme: () => void;
+  setOpenCheatSheet: (open: boolean) => void;
   progress: number;
   totalModules: number;
 }
@@ -70,6 +72,7 @@ export function CourseProvider({ children }: { children: ReactNode }) {
     moduleScores: {},
     examScore: null,
     theme: 'light',
+    openCheatSheet: false,
   });
 
   const [mounted, setMounted] = useState(false);
@@ -83,6 +86,7 @@ export function CourseProvider({ children }: { children: ReactNode }) {
       moduleScores: saved.moduleScores ?? {},
       examScore: saved.examScore ?? null,
       theme,
+      openCheatSheet: false,
     });
     document.documentElement.classList.toggle('dark', theme === 'dark');
     setMounted(true);
@@ -115,6 +119,10 @@ export function CourseProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, examScore: score }));
   }, []);
 
+  const setOpenCheatSheet = useCallback((open: boolean) => {
+    setState(prev => ({ ...prev, openCheatSheet: open }));
+  }, []);
+
   const toggleTheme = useCallback(() => {
     setState(prev => {
       const next = prev.theme === 'light' ? 'dark' : 'light';
@@ -134,6 +142,7 @@ export function CourseProvider({ children }: { children: ReactNode }) {
       setModuleScore,
       setExamScore,
       toggleTheme,
+      setOpenCheatSheet,
       progress,
       totalModules: TOTAL_MODULES,
     }}>

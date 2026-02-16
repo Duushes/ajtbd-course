@@ -186,7 +186,7 @@ const questions: ExamQuestion[] = [
 ];
 
 export default function Module9() {
-  const { completeModule, setExamScore, setCurrentModule } = useCourse();
+  const { completeModule, setExamScore, setCurrentModule, setOpenCheatSheet } = useCourse();
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(new Array(questions.length).fill(null));
   const [showResults, setShowResults] = useState(false);
@@ -280,7 +280,7 @@ export default function Module9() {
   };
 
   const getMessage = () => {
-    if (score >= 13) return 'Вы больше не строите фичи. Вы проектируете прогресс.';
+    if (score >= 13) return 'Отличный результат! Вы отлично освоили JTBD.';
     if (score >= 10) return 'Хороший результат! Ещё немного практики — и вы мастер JTBD.';
     if (score >= 7) return 'Неплохое начало. Рекомендуем пройти модули ещё раз.';
     return 'Стоит вернуться к материалам и пройти курс заново. Вы справитесь!';
@@ -336,9 +336,16 @@ export default function Module9() {
                 А нужно решать задачу пользователя.
               </p>
               {score >= 10 && (
-                <p className="text-sm text-accent mt-4">
-                  Шпаргалка со всеми основными идеями курса ждёт вас на главной странице.
-                </p>
+                <button
+                  onClick={() => {
+                    setOpenCheatSheet(true);
+                    setCurrentModule(0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-sm text-accent mt-4 hover:underline cursor-pointer transition-colors hover:text-accent/80"
+                >
+                  Шпаргалка со всеми основными идеями курса ждёт вас на главной странице →
+                </button>
               )}
             </motion.div>
 

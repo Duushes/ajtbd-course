@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCourse } from '@/context/CourseContext';
 
@@ -552,9 +552,16 @@ function CheatSheetBlock() {
 }
 
 export default function Landing() {
-  const { setCurrentModule, completedModules } = useCourse();
+  const { setCurrentModule, completedModules, openCheatSheet, setOpenCheatSheet } = useCourse();
   const [showCheatSheet, setShowCheatSheet] = useState(false);
   const examPassed = completedModules.has(9);
+
+  useEffect(() => {
+    if (openCheatSheet && examPassed) {
+      setShowCheatSheet(true);
+      setOpenCheatSheet(false);
+    }
+  }, [openCheatSheet, examPassed, setOpenCheatSheet]);
 
   return (
     <motion.div
