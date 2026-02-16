@@ -77,13 +77,13 @@ export default function Module4() {
         </h3>
         <div className="w-full overflow-x-auto">
           <svg
-            viewBox="0 0 720 370"
+            viewBox="0 0 720 380"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className="w-full max-w-2xl mx-auto"
           >
             {/* Background */}
-            <rect x="0" y="0" width="720" height="370" rx="16" fill="currentColor" fillOpacity="0.03" />
+            <rect x="0" y="0" width="720" height="380" rx="16" fill="currentColor" fillOpacity="0.03" />
 
             {/* Left Column - Traditional */}
             <rect x="30" y="20" width="320" height="50" rx="10" fill="#7c3aed" fillOpacity="0.15" />
@@ -146,16 +146,16 @@ export default function Module4() {
               Работа + решение = точный сегмент
             </text>
 
+            {/* Arrow icons */}
+            <circle cx="190" cy="310" r="8" fill="#ef4444" fillOpacity="0.15" />
+            <text x="190" y="314" textAnchor="middle" fontSize="10" fill="#ef4444">&#x2717;</text>
+            <circle cx="530" cy="310" r="8" fill="#22c55e" fillOpacity="0.15" />
+            <text x="530" y="314" textAnchor="middle" fontSize="10" fill="#22c55e">&#x2713;</text>
+
             {/* Bottom note */}
-            <text x="360" y="330" textAnchor="middle" fontSize="11" fill="currentColor" fillOpacity="0.6">
+            <text x="360" y="350" textAnchor="middle" fontSize="11" fill="currentColor" fillOpacity="0.6">
               CEO и студент с одной работой и одним решением -- один JTBD-сегмент
             </text>
-
-            {/* Arrow icons */}
-            <circle cx="190" y="315" cy="325" r="8" fill="#ef4444" fillOpacity="0.15" />
-            <text x="190" y="329" textAnchor="middle" fontSize="10" fill="#ef4444">&#x2717;</text>
-            <circle cx="530" cy="325" r="8" fill="#22c55e" fillOpacity="0.15" />
-            <text x="530" y="329" textAnchor="middle" fontSize="10" fill="#22c55e">&#x2713;</text>
           </svg>
         </div>
       </motion.div>

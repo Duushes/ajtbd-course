@@ -223,10 +223,10 @@ export default function Module2() {
 
         {/* SVG: Three Job Types */}
         <div className="flex justify-center my-6">
-          <svg viewBox="0 0 580 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-2xl">
+          <svg viewBox="0 0 580 195" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-2xl">
             {/* Functional */}
-            <rect x="10" y="20" width="170" height="130" rx="12" stroke="currentColor" strokeWidth="1.5" className="text-accent/50" fill="none" />
-            <rect x="10" y="20" width="170" height="130" rx="12" className="text-accent/5" fill="currentColor" />
+            <rect x="10" y="20" width="170" height="145" rx="12" stroke="currentColor" strokeWidth="1.5" className="text-accent/50" fill="none" />
+            <rect x="10" y="20" width="170" height="145" rx="12" className="text-accent/5" fill="currentColor" />
             {/* Gear icon */}
             <circle cx="95" cy="55" r="14" stroke="currentColor" strokeWidth="1.5" className="text-accent" fill="none" />
             <circle cx="95" cy="55" r="5" stroke="currentColor" strokeWidth="1.5" className="text-accent" fill="none" />
@@ -237,21 +237,21 @@ export default function Module2() {
             <text x="95" y="92" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Функциональная</text>
             <text x="95" y="108" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Сделать что-то</text>
             <text x="95" y="122" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">конкретное</text>
-            <text x="95" y="140" textAnchor="middle" className="text-accent" fontSize="10" fontStyle="italic" fill="currentColor">&laquo;Добраться до работы&raquo;</text>
+            <text x="95" y="148" textAnchor="middle" className="text-accent" fontSize="10" fontStyle="italic" fill="currentColor">&laquo;Добраться до работы&raquo;</text>
 
             {/* Emotional */}
-            <rect x="205" y="20" width="170" height="130" rx="12" stroke="currentColor" strokeWidth="1.5" className="text-error/50" fill="none" />
-            <rect x="205" y="20" width="170" height="130" rx="12" className="text-error/5" fill="currentColor" />
+            <rect x="205" y="20" width="170" height="145" rx="12" stroke="currentColor" strokeWidth="1.5" className="text-error/50" fill="none" />
+            <rect x="205" y="20" width="170" height="145" rx="12" className="text-error/5" fill="currentColor" />
             {/* Heart icon */}
             <path d="M290 48C290 44 286 40 282 40C278 40 275 43 275 46C275 43 272 40 268 40C264 40 260 44 260 48C260 56 275 65 275 65C275 65 290 56 290 48Z" stroke="currentColor" strokeWidth="1.5" className="text-error" fill="none" />
             <text x="290" y="92" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Эмоциональная</text>
             <text x="290" y="108" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Чувствовать</text>
             <text x="290" y="122" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">определённым образом</text>
-            <text x="290" y="140" textAnchor="middle" className="text-error" fontSize="10" fontStyle="italic" fill="currentColor">&laquo;Чувствовать себя уверенно&raquo;</text>
+            <text x="290" y="148" textAnchor="middle" className="text-error" fontSize="10" fontStyle="italic" fill="currentColor">&laquo;Чувствовать себя уверенно&raquo;</text>
 
             {/* Social */}
-            <rect x="400" y="20" width="170" height="130" rx="12" stroke="currentColor" strokeWidth="1.5" className="text-success/50" fill="none" />
-            <rect x="400" y="20" width="170" height="130" rx="12" className="text-success/5" fill="currentColor" />
+            <rect x="400" y="20" width="170" height="145" rx="12" stroke="currentColor" strokeWidth="1.5" className="text-success/50" fill="none" />
+            <rect x="400" y="20" width="170" height="145" rx="12" className="text-success/5" fill="currentColor" />
             {/* People icon */}
             <circle cx="478" cy="45" r="6" stroke="currentColor" strokeWidth="1.5" className="text-success" fill="none" />
             <path d="M466 65C466 59 471 54 478 54C485 54 490 59 490 65" stroke="currentColor" strokeWidth="1.5" className="text-success" strokeLinecap="round" fill="none" />
@@ -259,7 +259,7 @@ export default function Module2() {
             <text x="485" y="92" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Социальная</text>
             <text x="485" y="108" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Быть воспринятым</text>
             <text x="485" y="122" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">определённым образом</text>
-            <text x="485" y="140" textAnchor="middle" className="text-success" fontSize="10" fontStyle="italic" fill="currentColor">&laquo;Выглядеть успешным&raquo;</text>
+            <text x="485" y="148" textAnchor="middle" className="text-success" fontSize="10" fontStyle="italic" fill="currentColor">&laquo;Выглядеть успешным&raquo;</text>
           </svg>
         </div>
       </motion.div>

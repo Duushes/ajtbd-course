@@ -169,10 +169,10 @@ export default function Module1() {
             <rect x="240" y="40" width="160" height="80" rx="12" stroke="currentColor" strokeWidth="1.5" className="text-accent/60" fill="none" />
             <rect x="240" y="40" width="160" height="80" rx="12" className="text-accent/5" fill="currentColor" />
             {/* Lightning icon */}
-            <path d="M316 56L310 72H318L312 88" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" />
-            <text x="320" y="72" textAnchor="middle" className="text-foreground" fontSize="13" fontWeight="600" fill="currentColor">Триггер</text>
-            <text x="320" y="92" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Осознание работы</text>
-            <text x="320" y="106" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">&laquo;Мне нужно решение&raquo;</text>
+            <path d="M322 46L318 55H322L318 64" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" />
+            <text x="320" y="80" textAnchor="middle" className="text-foreground" fontSize="13" fontWeight="600" fill="currentColor">Триггер</text>
+            <text x="320" y="96" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">Осознание работы</text>
+            <text x="320" y="110" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">&laquo;Мне нужно решение&raquo;</text>
 
             {/* Arrow Trigger → B */}
             <line x1="400" y1="80" x2="450" y2="80" stroke="currentColor" strokeWidth="1.5" className="text-muted-foreground" strokeDasharray="4 3" />

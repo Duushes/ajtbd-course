@@ -86,15 +86,15 @@ export default function Module8() {
             <text x="400" y="248" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Смежные работы</text>
 
             {/* Arrow: Go Higher (pointing up-left) */}
-            <line x1="145" y1="160" x2="115" y2="130" stroke="#7c3aed" strokeWidth="1.5" />
-            <polygon points="110,137 108,124 121,130" fill="#7c3aed" />
-            <text x="80" y="118" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ВЫШЕ</text>
-            <text x="80" y="132" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Большая работа</text>
+            <line x1="150" y1="155" x2="90" y2="80" stroke="#7c3aed" strokeWidth="1.5" />
+            <polygon points="83,73 92,74 86,84" fill="#7c3aed" />
+            <text x="52" y="62" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ВЫШЕ</text>
+            <text x="52" y="76" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Большая работа</text>
 
             {/* Example labels on circles */}
             <text x="158" y="290" textAnchor="middle" fontSize="9" fill="#7c3aed" opacity="0.8">Пример: трекинг расходов</text>
             <text x="330" y="180" textAnchor="middle" fontSize="9" fill="#7c3aed" opacity="0.8">Пример: бюджет, инвестиции</text>
-            <text x="370" y="80" textAnchor="middle" fontSize="9" fill="#7c3aed" opacity="0.8">Пример: финансовая свобода</text>
+            <text x="380" y="95" textAnchor="middle" fontSize="9" fill="#7c3aed" opacity="0.8">Пример: финансовая свобода</text>
           </svg>
         </div>
       </motion.div>
