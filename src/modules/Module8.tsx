@@ -55,46 +55,51 @@ export default function Module8() {
 
         {/* SVG Diagram: Three concentric circles */}
         <div className="flex justify-center my-8">
-          <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-md">
+          <svg viewBox="0 0 580 520" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-lg">
             {/* Big Job (outer circle) */}
-            <circle cx="240" cy="240" r="210" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="6 4" fill="#7c3aed" fillOpacity="0.03" />
-            <text x="240" y="52" textAnchor="middle" fontSize="12" fontWeight="600" fill="#7c3aed">БОЛЬШАЯ РАБОТА</text>
-            <text x="240" y="68" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Жизненная цель клиента</text>
+            <circle cx="280" cy="265" r="190" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="6 4" fill="#7c3aed" fillOpacity="0.03" />
 
             {/* Adjacent Jobs (middle circle) */}
-            <circle cx="240" cy="240" r="140" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.06" />
-            <text x="240" y="118" textAnchor="middle" fontSize="11" fontWeight="600" fill="#7c3aed">СМЕЖНЫЕ РАБОТЫ</text>
-            <text x="240" y="134" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Связанные задачи вокруг ядра</text>
+            <circle cx="280" cy="265" r="125" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.06" />
 
             {/* Core Job (center circle) */}
-            <circle cx="240" cy="240" r="70" stroke="#7c3aed" strokeWidth="2" fill="#7c3aed" fillOpacity="0.12" />
-            <text x="240" y="232" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">ЯДРО</text>
-            <text x="240" y="250" textAnchor="middle" fontSize="10" className="text-foreground" fontWeight="500" fill="currentColor">Основная</text>
-            <text x="240" y="264" textAnchor="middle" fontSize="10" className="text-foreground" fontWeight="500" fill="currentColor">работа</text>
+            <circle cx="280" cy="265" r="55" stroke="#7c3aed" strokeWidth="2" fill="#7c3aed" fillOpacity="0.12" />
 
-            {/* Expansion arrows */}
-            {/* Arrow: Go Deeper (pointing inward) */}
-            <line x1="240" y1="310" x2="240" y2="340" stroke="#7c3aed" strokeWidth="1.5" />
-            <polygon points="235,338 240,350 245,338" fill="#7c3aed" />
-            <text x="240" y="368" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ГЛУБЖЕ</text>
-            <text x="240" y="382" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Решать ядро лучше</text>
+            {/* Labels above outer circle */}
+            <text x="280" y="52" textAnchor="middle" fontSize="12" fontWeight="600" fill="#7c3aed">БОЛЬШАЯ РАБОТА</text>
+            <text x="280" y="68" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Жизненная цель клиента</text>
 
-            {/* Arrow: Go Wider (pointing right) */}
-            <line x1="310" y1="240" x2="345" y2="240" stroke="#7c3aed" strokeWidth="1.5" />
-            <polygon points="343,235 355,240 343,245" fill="#7c3aed" />
-            <text x="400" y="234" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ШИРЕ</text>
-            <text x="400" y="248" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Смежные работы</text>
+            {/* Labels between outer and middle (in outer ring) */}
+            <text x="280" y="108" textAnchor="middle" fontSize="11" fontWeight="600" fill="#7c3aed">СМЕЖНЫЕ РАБОТЫ</text>
+            <text x="280" y="124" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Связанные задачи вокруг ядра</text>
 
-            {/* Arrow: Go Higher (pointing up-left) */}
-            <line x1="150" y1="155" x2="90" y2="80" stroke="#7c3aed" strokeWidth="1.5" />
-            <polygon points="83,73 92,74 86,84" fill="#7c3aed" />
-            <text x="52" y="62" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ВЫШЕ</text>
-            <text x="52" y="76" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Большая работа</text>
+            {/* Core labels */}
+            <text x="280" y="255" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">ЯДРО</text>
+            <text x="280" y="273" textAnchor="middle" fontSize="10" className="text-foreground" fontWeight="500" fill="currentColor">Основная</text>
+            <text x="280" y="287" textAnchor="middle" fontSize="10" className="text-foreground" fontWeight="500" fill="currentColor">работа</text>
 
-            {/* Example labels on circles */}
-            <text x="158" y="290" textAnchor="middle" fontSize="9" fill="#7c3aed" opacity="0.8">Пример: трекинг расходов</text>
-            <text x="330" y="180" textAnchor="middle" fontSize="9" fill="#7c3aed" opacity="0.8">Пример: бюджет, инвестиции</text>
-            <text x="380" y="95" textAnchor="middle" fontSize="9" fill="#7c3aed" opacity="0.8">Пример: финансовая свобода</text>
+            {/* Arrow: Go Deeper (below inner circle) */}
+            <line x1="280" y1="320" x2="280" y2="370" stroke="#7c3aed" strokeWidth="1.5" />
+            <polygon points="275,368 280,380 285,368" fill="#7c3aed" />
+            <text x="280" y="400" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ГЛУБЖЕ</text>
+            <text x="280" y="414" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Решать ядро лучше</text>
+
+            {/* Arrow: Go Wider (right of middle circle) */}
+            <line x1="405" y1="265" x2="455" y2="265" stroke="#7c3aed" strokeWidth="1.5" />
+            <polygon points="453,260 465,265 453,270" fill="#7c3aed" />
+            <text x="510" y="259" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ШИРЕ</text>
+            <text x="510" y="273" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor">Смежные работы</text>
+
+            {/* Arrow: Go Higher (outside outer circle, upper-left) */}
+            <line x1="160" y1="150" x2="60" y2="35" stroke="#7c3aed" strokeWidth="1.5" />
+            <polygon points="53,30 62,28 57,40" fill="#7c3aed" />
+            <text x="32" y="18" textAnchor="middle" fontSize="10" fontWeight="600" fill="#7c3aed">ВЫШЕ</text>
+            <text x="60" y="18" fontSize="10" className="text-muted-foreground" fill="currentColor">Большая работа</text>
+
+            {/* Example labels — in center of each ring */}
+            <text x="185" y="310" textAnchor="middle" fontSize="8.5" fill="#7c3aed" opacity="0.65" fontStyle="italic">трекинг расходов</text>
+            <text x="395" y="170" textAnchor="middle" fontSize="8.5" fill="#7c3aed" opacity="0.65" fontStyle="italic">бюджет, инвестиции</text>
+            <text x="430" y="460" textAnchor="middle" fontSize="8.5" fill="#7c3aed" opacity="0.65" fontStyle="italic">финансовая свобода</text>
           </svg>
         </div>
       </motion.div>
@@ -200,51 +205,51 @@ export default function Module8() {
 
         {/* SVG: Opportunity Map */}
         <div className="flex justify-center my-8">
-          <svg viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-lg">
+          <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-lg">
             {/* Axes */}
-            <line x1="60" y1="300" x2="400" y2="300" stroke="currentColor" strokeWidth="1.5" className="text-muted-foreground" />
-            <line x1="60" y1="300" x2="60" y2="40" stroke="currentColor" strokeWidth="1.5" className="text-muted-foreground" />
-
-            {/* Axis labels */}
-            <text x="230" y="340" textAnchor="middle" fontSize="10" fontWeight="600" className="text-foreground" fill="currentColor">Важность работы</text>
-            <text x="16" y="170" textAnchor="middle" fontSize="10" fontWeight="600" className="text-foreground" fill="currentColor" transform="rotate(-90, 16, 170)">Удовлетворённость</text>
+            <line x1="80" y1="330" x2="460" y2="330" stroke="currentColor" strokeWidth="1.5" className="text-muted-foreground" />
+            <line x1="80" y1="330" x2="80" y2="50" stroke="currentColor" strokeWidth="1.5" className="text-muted-foreground" />
 
             {/* Arrow tips */}
-            <polygon points="398,295 408,300 398,305" className="text-muted-foreground" fill="currentColor" />
-            <polygon points="55,42 60,32 65,42" className="text-muted-foreground" fill="currentColor" />
+            <polygon points="458,325 468,330 458,335" className="text-muted-foreground" fill="currentColor" />
+            <polygon points="75,52 80,42 85,52" className="text-muted-foreground" fill="currentColor" />
+
+            {/* Axis labels */}
+            <text x="270" y="370" textAnchor="middle" fontSize="11" fontWeight="600" className="text-foreground" fill="currentColor">Важность работы</text>
+            <text x="30" y="190" textAnchor="middle" fontSize="11" fontWeight="600" className="text-foreground" fill="currentColor" transform="rotate(-90, 30, 190)">Удовлетворённость</text>
 
             {/* Grid lines */}
-            <line x1="230" y1="300" x2="230" y2="40" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" className="text-border" />
-            <line x1="60" y1="170" x2="400" y2="170" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" className="text-border" />
+            <line x1="270" y1="330" x2="270" y2="50" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" className="text-border" />
+            <line x1="80" y1="190" x2="460" y2="190" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" className="text-border" />
 
             {/* Quadrant labels */}
-            <text x="145" y="95" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor" opacity="0.8">Не приоритет</text>
-            <text x="315" y="95" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor" opacity="0.8">Перенасыщено</text>
-            <text x="145" y="245" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor" opacity="0.8">Низкий потенциал</text>
+            <text x="175" y="110" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor" opacity="0.7">Не приоритет</text>
+            <text x="365" y="110" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor" opacity="0.7">Перенасыщено</text>
+            <text x="175" y="275" textAnchor="middle" fontSize="10" className="text-muted-foreground" fill="currentColor" opacity="0.7">Низкий потенциал</text>
 
             {/* Opportunity zone highlight */}
-            <rect x="230" y="170" width="170" height="130" rx="8" fill="#7c3aed" fillOpacity="0.08" stroke="#7c3aed" strokeWidth="1" strokeDasharray="4 3" />
-            <text x="315" y="245" textAnchor="middle" fontSize="11" fontWeight="700" fill="#7c3aed">ВОЗМОЖНОСТЬ</text>
-            <text x="315" y="260" textAnchor="middle" fontSize="10" fill="#7c3aed">Важно + Не решено</text>
+            <rect x="275" y="195" width="175" height="125" rx="8" fill="#7c3aed" fillOpacity="0.08" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="4 3" />
+            <text x="362" y="240" textAnchor="middle" fontSize="12" fontWeight="700" fill="#7c3aed">ВОЗМОЖНОСТЬ</text>
+            <text x="362" y="258" textAnchor="middle" fontSize="10" fill="#7c3aed">Важно + Не решено</text>
 
             {/* Dots: competitors */}
-            <circle cx="310" cy="120" r="8" fill="#7c3aed" fillOpacity="0.3" stroke="#7c3aed" strokeWidth="1" />
-            <text x="328" y="124" fontSize="10" className="text-muted-foreground" fill="currentColor">Конкурент A</text>
+            <circle cx="350" cy="130" r="8" fill="#7c3aed" fillOpacity="0.3" stroke="#7c3aed" strokeWidth="1" />
+            <text x="370" y="134" fontSize="10" className="text-muted-foreground" fill="currentColor">Конкурент A</text>
 
-            <circle cx="280" cy="150" r="6" fill="#7c3aed" fillOpacity="0.2" stroke="#7c3aed" strokeWidth="1" />
-            <text x="296" y="154" fontSize="10" className="text-muted-foreground" fill="currentColor">Конкурент B</text>
+            <circle cx="320" cy="162" r="6" fill="#7c3aed" fillOpacity="0.2" stroke="#7c3aed" strokeWidth="1" />
+            <text x="338" y="166" fontSize="10" className="text-muted-foreground" fill="currentColor">Конкурент B</text>
 
             {/* Dot: your product */}
-            <circle cx="160" cy="200" r="8" fill="#7c3aed" stroke="#7c3aed" strokeWidth="2" />
-            <text x="178" y="204" fontSize="10" fontWeight="600" fill="#7c3aed">Вы</text>
+            <circle cx="190" cy="240" r="8" fill="#7c3aed" stroke="#7c3aed" strokeWidth="2" />
+            <text x="208" y="244" fontSize="10" fontWeight="600" fill="#7c3aed">Вы</text>
 
             {/* Dot: opportunity */}
-            <circle cx="340" cy="230" r="12" fill="none" stroke="#7c3aed" strokeWidth="2" strokeDasharray="4 2" />
-            <text x="340" y="234" textAnchor="middle" fontSize="10" fill="#7c3aed">?</text>
+            <circle cx="400" cy="290" r="12" fill="none" stroke="#7c3aed" strokeWidth="2" strokeDasharray="4 2" />
+            <text x="400" y="294" textAnchor="middle" fontSize="10" fill="#7c3aed">?</text>
 
             {/* Arrow from "you" to opportunity */}
-            <path d="M170 196 C220 180 290 200 330 224" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="4 3" fill="none" />
-            <polygon points="326,218 334,224 324,226" fill="#7c3aed" />
+            <path d="M200 236 C250 215 340 245 390 284" stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="4 3" fill="none" />
+            <polygon points="386,278 394,284 384,286" fill="#7c3aed" />
           </svg>
         </div>
       </motion.div>

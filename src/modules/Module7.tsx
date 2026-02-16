@@ -201,31 +201,36 @@ export default function Module7() {
 
         {/* SVG: Communication Research Questions */}
         <div className="flex justify-center my-8">
-          <svg viewBox="0 0 480 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-sm">
-            {/* Funnel shape */}
-            <path d="M60 20 L340 20 L280 100 L120 100 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.08" />
-            <path d="M120 100 L280 100 L250 170 L150 170 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.12" />
-            <path d="M150 170 L250 170 L230 230 L170 230 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.18" />
+          <svg viewBox="0 0 560 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xl">
+            {/* Funnel shape — wider sections for text to fit */}
+            <path d="M40 20 L360 20 L305 100 L95 100 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.08" />
+            <path d="M95 100 L305 100 L270 180 L130 180 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.12" />
+            <path d="M130 180 L270 180 L250 255 L150 255 Z" stroke="#7c3aed" strokeWidth="1.5" fill="#7c3aed" fillOpacity="0.18" />
 
-            {/* Labels */}
-            <text x="200" y="50" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Осознание</text>
-            <text x="200" y="68" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">&laquo;Как вы поняли, что есть проблема?&raquo;</text>
+            {/* Section 1: Осознание */}
+            <text x="200" y="50" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Осознание</text>
+            <text x="200" y="70" textAnchor="middle" className="text-muted-foreground" fontSize="9" fill="currentColor">&laquo;Как вы поняли, что есть проблема?&raquo;</text>
 
-            <text x="200" y="126" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Поиск</text>
-            <text x="200" y="144" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">&laquo;Где вы искали решение? Кому доверяли?&raquo;</text>
+            {/* Section 2: Поиск */}
+            <text x="200" y="132" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Поиск</text>
+            <text x="200" y="152" textAnchor="middle" className="text-muted-foreground" fontSize="9" fill="currentColor">&laquo;Где искали решение? Кому доверяли?&raquo;</text>
 
-            <text x="200" y="198" textAnchor="middle" className="text-foreground" fontSize="11" fontWeight="600" fill="currentColor">Покупка</text>
-            <text x="200" y="214" textAnchor="middle" className="text-muted-foreground" fontSize="10" fill="currentColor">&laquo;Что подтолкнуло к решению? Чего боялись?&raquo;</text>
+            {/* Section 3: Покупка */}
+            <text x="200" y="210" textAnchor="middle" className="text-foreground" fontSize="12" fontWeight="600" fill="currentColor">Покупка</text>
+            <text x="200" y="228" textAnchor="middle" className="text-muted-foreground" fontSize="9" fill="currentColor">&laquo;Что подтолкнуло к решению?&raquo;</text>
 
-            {/* Right-side annotations */}
-            <line x1="342" y1="60" x2="370" y2="60" stroke="#7c3aed" strokeWidth="1" strokeDasharray="3 2" />
-            <text x="375" y="64" fontSize="10" fill="#7c3aed" fontWeight="500">Контент, блог</text>
+            {/* Right-side annotations — plenty of room */}
+            <line x1="362" y1="55" x2="410" y2="55" stroke="#7c3aed" strokeWidth="1" strokeDasharray="3 2" />
+            <text x="418" y="59" fontSize="10" fill="#7c3aed" fontWeight="500">Контент, блог</text>
 
-            <line x1="282" y1="135" x2="370" y2="135" stroke="#7c3aed" strokeWidth="1" strokeDasharray="3 2" />
-            <text x="375" y="139" fontSize="10" fill="#7c3aed" fontWeight="500">SEO, отзывы</text>
+            <line x1="307" y1="140" x2="410" y2="140" stroke="#7c3aed" strokeWidth="1" strokeDasharray="3 2" />
+            <text x="418" y="144" fontSize="10" fill="#7c3aed" fontWeight="500">SEO, отзывы</text>
 
-            <line x1="252" y1="200" x2="370" y2="200" stroke="#7c3aed" strokeWidth="1" strokeDasharray="3 2" />
-            <text x="375" y="204" fontSize="10" fill="#7c3aed" fontWeight="500">Лендинг, демо</text>
+            <line x1="272" y1="218" x2="410" y2="218" stroke="#7c3aed" strokeWidth="1" strokeDasharray="3 2" />
+            <text x="418" y="222" fontSize="10" fill="#7c3aed" fontWeight="500">Лендинг, демо</text>
+
+            {/* Bottom label */}
+            <text x="200" y="290" textAnchor="middle" fill="#7c3aed" fontSize="10" fontWeight="500" opacity="0.7">Осознание → Поиск → Покупка</text>
           </svg>
         </div>
 
