@@ -331,10 +331,17 @@ export default function Module9() {
                 />
               </div>
               <p className="text-lg text-muted-foreground">{getMessage()}</p>
-              <p className="text-base text-foreground font-medium mt-6 leading-relaxed">
-                Вы теперь знаете, что не нужно просто пилить фичи.<br />
-                А нужно решать задачу пользователя.
-              </p>
+              {score >= 13 ? (
+                <p className="text-base text-foreground font-medium mt-6 leading-relaxed">
+                  Вы теперь знаете, что не нужно просто пилить фичи.<br />
+                  А нужно решать задачу пользователя.
+                </p>
+              ) : (
+                <p className="text-base text-foreground font-medium mt-6 leading-relaxed">
+                  Пересмотрите модули, в которых ошиблись,<br />
+                  и попробуйте пройти экзамен ещё раз.
+                </p>
+              )}
               {score >= 10 && (
                 <button
                   onClick={() => {
