@@ -11,11 +11,23 @@ interface ExamQuestion {
   correctIndex: number;
   explanation: string;
   type?: 'ordering';
+  moduleRef: number;
 }
 
-const questions: ExamQuestion[] = [
+const moduleTitles: Record<number, string> = {
+  1: 'Введение в AJTBD',
+  2: 'Core Job и Big Job',
+  3: 'Ценность продукта',
+  4: 'Сегментация',
+  5: 'Запуск нового продукта',
+  6: 'Развитие существующего продукта',
+  7: 'Упаковка и рост продаж',
+  8: 'Стратегия роста',
+};
+
+const sourceQuestions: ExamQuestion[] = [
   {
-    question: '1. Что такое «работа» (Job) в методологии JTBD?',
+    question: 'Что такое «работа» (Job) в методологии JTBD?',
     options: [
       'Функция продукта, которую регулярно использует клиент',
       'Задача клиента: перейти из Точки А в Точку Б',
@@ -24,9 +36,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'Работа (Job) — это цель/задача клиента: перейти из Точки А (контекст, триггер) в Точку Б (результат, позитивные эмоции). Формула: «хочу + глагол». Это не фича продукта и не метрика.',
+    moduleRef: 1,
   },
   {
-    question: '2. Какое из утверждений верно описывает «решение» (Solution) в JTBD?',
+    question: 'Какое из утверждений верно описывает «решение» (Solution) в JTBD?',
     options: [
       'Это только коммерческий продукт на рынке',
       'Это конкретная функция внутри вашего продукта',
@@ -35,9 +48,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 2,
     explanation: 'Решение — это всё, с помощью чего человек выполняет работу. Netflix, Excel, репетитор, «попросить друга» — всё это решения.',
+    moduleRef: 1,
   },
   {
-    question: '3. Что такое «найм» (Hiring) в контексте JTBD?',
+    question: 'Что такое «найм» (Hiring) в контексте JTBD?',
     options: [
       'Первое взаимодействие пользователя с продуктом',
       'Выбор конкретного решения для выполнения работы',
@@ -46,9 +60,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: '«Найм» — это акт выбора решения для выполнения работы. Например: «Человек нанял Яндекс Такси на работу быстро добраться до офиса».',
+    moduleRef: 1,
   },
   {
-    question: '4. Чем Core Job отличается от Big Job?',
+    question: 'Чем Core Job отличается от Big Job?',
     options: [
       'Core Job всегда важнее и приоритетнее Big Job',
       'Core Job — это конкретная задача, Big Job — жизненная цель',
@@ -57,9 +72,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'Core Job — это конкретная работа, для которой человек нанимает решение. Big Job — более высокоуровневая жизненная или бизнес-цель, в рамках которой существует Core Job.',
+    moduleRef: 2,
   },
   {
-    question: '5. Пользователи в интервью говорят: «Хочу чувствовать уверенность, что мне заплатят вовремя». Какой это тип работы?',
+    question: 'Пользователи в интервью говорят: «Хочу чувствовать уверенность, что мне заплатят вовремя». Какой это тип работы?',
     options: [
       'Функциональная работа',
       'Эмоциональная работа',
@@ -68,9 +84,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: '«Чувствовать уверенность» — это эмоциональная работа. Функциональная была бы «получить оплату вовремя», социальная — «выглядеть профессионально перед клиентом».',
+    moduleRef: 2,
   },
   {
-    question: '6. Какие четыре силы влияют на переключение между решениями?',
+    question: 'Какие четыре силы влияют на переключение между решениями?',
     options: [
       'Цена, качество, бренд, доступность',
       'Push, Pull, Inertia, Anxiety',
@@ -79,9 +96,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'Четыре силы переключения: Push (толчок от текущего решения), Pull (притяжение нового), Inertia (инерция привычки), Anxiety (страх перед новым).',
+    moduleRef: 3,
   },
   {
-    question: '7. SaaS-продукт видит падение retention. Исследование показало: Push слабый, но Anxiety высокий — клиенты боятся потерять данные. Какой приоритет?',
+    question: 'SaaS-продукт видит падение retention. Исследование показало: Push слабый, но Anxiety высокий — клиенты боятся потерять данные. Какой приоритет?',
     options: [
       'Снизить цену, чтобы усилить Pull',
       'Добавить фич для увеличения Push от конкурентов',
@@ -90,9 +108,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 2,
     explanation: 'Когда Anxiety — главный барьер, нужно работать с ним напрямую: снизить страх перед переходом через гарантии, помощь с миграцией и социальные доказательства.',
+    moduleRef: 3,
   },
   {
-    question: '8. CEO и студент покупают кофе из одного автомата утром. Они в одном JTBD-сегменте?',
+    question: 'CEO и студент покупают кофе из одного автомата утром. Они в одном JTBD-сегменте?',
     options: [
       'Нет, у них разный доход и соцстатус',
       'Да, если у них одна работа и одно текущее решение',
@@ -101,9 +120,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'JTBD-сегмент = работа + текущее решение. Демография не определяет сегмент. Если оба нанимают кофе на одну и ту же работу — они в одном сегменте.',
+    moduleRef: 4,
   },
   {
-    question: '9. Вы запускаете новый продукт. Расставьте 5 шагов алгоритма AJTBD в правильном порядке.',
+    question: 'Вы запускаете новый продукт. Расставьте 5 шагов алгоритма AJTBD в правильном порядке.',
     type: 'ordering',
     options: [
       'Гипотеза о работе клиента',
@@ -114,9 +134,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 0,
     explanation: 'Правильный порядок: 1) Гипотеза о работе → 2) Анализ рынка → 3) Сегменты + RAT → 4) UX-интервью → 5) Оценка стоимости. Нельзя начинать с анализа рынка без гипотезы — не знаешь, что искать.',
+    moduleRef: 5,
   },
   {
-    question: '10. Что проверяет RAT (Riskiest Assumption Test)?',
+    question: 'Что проверяет RAT (Riskiest Assumption Test)?',
     options: [
       'Общую жизнеспособность бизнес-модели продукта',
       'Одно самое рискованное допущение в гипотезе',
@@ -125,9 +146,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'RAT — это проверка самого рискованного допущения. Вместо того чтобы проверять всё, вы находите допущение, от которого зависит вся идея, и тестируете его первым.',
+    moduleRef: 5,
   },
   {
-    question: '11. После ABCDX-сегментации: A — 5%, B — 15%, D — 40%. Куда направить ресурсы?',
+    question: 'После ABCDX-сегментации: A — 5%, B — 15%, D — 40%. Куда направить ресурсы?',
     options: [
       'На сегмент D — он самый большой по объёму',
       'На сегменты A и B — понять их работы и привлечь похожих',
@@ -136,9 +158,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'Сегменты A и B — ваши целевые клиенты. Сегмент D невозможно удовлетворить, тратить на них ресурсы неэффективно. Сегмент X важен стратегически, но сначала укрепите A и B.',
+    moduleRef: 6,
   },
   {
-    question: '12. Как рассчитывается приоритет сегмента в AJTBD?',
+    question: 'Как рассчитывается приоритет сегмента в AJTBD?',
     options: [
       'NPS × Retention Rate × средний чек',
       'Объём сегмента × неудовлетворённость × частота × важность',
@@ -147,9 +170,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'Приоритет = Объём × Неудовлетворённость × Частота × Важность. Каждый фактор оценивается от 1 до 5, максимальный приоритет — 625.',
+    moduleRef: 4,
   },
   {
-    question: '13. Сегмент: объём 4, неудовлетворённость 5, частота 3, важность 4. Приоритет = 240. Конкурентный сегмент: объём 5, неудовлетворённость 2, частота 5, важность 3 = 150. Какой вывод?',
+    question: 'Сегмент: объём 4, неудовлетворённость 5, частота 3, важность 4. Приоритет = 240. Конкурентный сегмент: объём 5, неудовлетворённость 2, частота 5, важность 3 = 150. Какой вывод?',
     options: [
       'Выбрать второй — у него больший объём и частота',
       'Выбрать первый — высокая неудовлетворённость даёт лучшую мотивацию переключиться',
@@ -158,9 +182,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'Первый сегмент с приоритетом 240 выигрывает: высокая неудовлетворённость (5) означает сильную мотивацию переключиться на ваш продукт. Объём можно нарастить, а заставить людей страдать от текущего решения — нельзя.',
+    moduleRef: 4,
   },
   {
-    question: '14. Сервис доставки еды занял 30% рынка в своём городе. Retention высокий, NPS > 50. Рост замедлился. Команда предлагает три стратегии: (A) улучшить UX заказа и скорость доставки, (B) добавить доставку продуктов и цветов, (C) стать платформой «всё для дома» с уборкой, ремонтом, няней. Какая комбинация стратегий оптимальна?',
+    question: 'Сервис доставки еды занял 30% рынка в своём городе. Retention высокий, NPS > 50. Рост замедлился. Команда предлагает три стратегии: (A) улучшить UX заказа и скорость доставки, (B) добавить доставку продуктов и цветов, (C) стать платформой «всё для дома» с уборкой, ремонтом, няней. Какая комбинация стратегий оптимальна?',
     options: [
       'Только A (Go Deeper) — сначала нужно стать лучшими в ядре',
       'A + B: укрепить ядро и расшириться на смежные работы',
@@ -169,9 +194,10 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 1,
     explanation: 'При высоком Retention и NPS ядро уже сильное, но Go Deeper (A) продолжает укреплять позицию. Go Wider (B) — естественный следующий шаг: adjacent jobs «купить продукты», «заказать цветы» близки к текущей работе. Go Higher (C) слишком рискован без проверки — Big Job «управлять бытом» требует совершенно других компетенций.',
+    moduleRef: 8,
   },
   {
-    question: '15. Вы развиваете существующий продукт. Расставьте 5 шагов алгоритма AJTBD в правильном порядке.',
+    question: 'Вы развиваете существующий продукт. Расставьте 5 шагов алгоритма AJTBD в правильном порядке.',
     type: 'ordering',
     options: [
       'Гипотеза / идея для развития',
@@ -182,13 +208,43 @@ const questions: ExamQuestion[] = [
     ],
     correctIndex: 0,
     explanation: 'Правильный порядок: 1) Гипотеза → 2) Метрики и стратегия → 3) ABCDX + RAT → 4) UX-интервью → 5) Оценка стоимости. Сначала идея, потом проверка по метрикам — не наоборот.',
+    moduleRef: 6,
   },
 ];
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const result = [...arr];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function createShuffledExam(source: ExamQuestion[]): ExamQuestion[] {
+  const shuffledIndices = shuffleArray(source.map((_, i) => i));
+
+  return shuffledIndices.map(origIdx => {
+    const q = source[origIdx];
+    // Ordering questions keep option order (drag-drop handles display shuffling)
+    if (q.type === 'ordering') {
+      return { ...q };
+    }
+    // Shuffle options for multiple-choice
+    const optionIndices = shuffleArray(q.options.map((_, i) => i));
+    return {
+      ...q,
+      options: optionIndices.map(i => q.options[i]),
+      correctIndex: optionIndices.indexOf(q.correctIndex),
+    };
+  });
+}
+
 export default function Module9() {
   const { completeModule, setExamScore, setCurrentModule, setOpenCheatSheet } = useCourse();
+  const [examQuestions] = useState(() => createShuffledExam(sourceQuestions));
   const [currentQ, setCurrentQ] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(new Array(questions.length).fill(null));
+  const [answers, setAnswers] = useState<(number | null)[]>(() => new Array(sourceQuestions.length).fill(null));
   const [showResults, setShowResults] = useState(false);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -196,8 +252,8 @@ export default function Module9() {
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const q = questions[currentQ];
-    if (q.type === 'ordering') {
+    const q = examQuestions[currentQ];
+    if (q?.type === 'ordering') {
       const indices = q.options.map((_, i) => i);
       for (let i = indices.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -209,7 +265,7 @@ export default function Module9() {
       setOrderState(indices);
     }
     setDragOverIndex(null);
-  }, [currentQ]);
+  }, [currentQ, examQuestions]);
 
   const moveItem = (fromIndex: number, direction: number) => {
     const toIndex = fromIndex + direction;
@@ -250,7 +306,7 @@ export default function Module9() {
   };
 
   const score = answers.reduce<number>((acc, ans, i) => {
-    if (ans === questions[i].correctIndex) return acc + 1;
+    if (ans === examQuestions[i]?.correctIndex) return acc + 1;
     return acc;
   }, 0);
 
@@ -264,14 +320,14 @@ export default function Module9() {
   };
 
   const handleNext = () => {
-    if (currentQ < questions.length - 1) {
+    if (currentQ < examQuestions.length - 1) {
       setCurrentQ(currentQ + 1);
       setSelectedOption(null);
       setShowExplanation(false);
     } else {
       setShowResults(true);
       const finalScore = answers.reduce<number>((acc, ans, i) => {
-        if (ans === questions[i].correctIndex) return acc + 1;
+        if (ans === examQuestions[i]?.correctIndex) return acc + 1;
         return acc;
       }, 0);
       setExamScore(finalScore);
@@ -320,12 +376,12 @@ export default function Module9() {
               className="p-8 rounded-2xl border border-border/50 bg-card"
             >
               <h2 className="text-3xl font-bold mb-2">
-                {score} из {questions.length}
+                {score} из {examQuestions.length}
               </h2>
               <div className="w-full h-2 bg-muted rounded-full mt-4 mb-6 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: `${(score / questions.length) * 100}%` }}
+                  animate={{ width: `${(score / examQuestions.length) * 100}%` }}
                   transition={{ delay: 0.6, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
                   className={`h-full rounded-full ${score >= 13 ? 'bg-success' : score >= 8 ? 'bg-accent' : 'bg-error'}`}
                 />
@@ -361,26 +417,39 @@ export default function Module9() {
               transition={{ delay: 0.8 }}
               className="mt-8 space-y-3"
             >
-              {questions.map((q, i) => (
-                <div
-                  key={i}
-                  className={`flex items-center gap-3 p-3 rounded-lg text-sm text-left
-                    ${answers[i] === q.correctIndex ? 'bg-success/5 text-success' : 'bg-error/5 text-error'}`}
-                >
-                  <span className="flex-shrink-0">
-                    {answers[i] === q.correctIndex ? (
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M13.25 4.75L6 12L2.75 8.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    ) : (
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                      </svg>
-                    )}
-                  </span>
-                  <span className="text-foreground/70">{q.question.replace(/^\d+\.\s*/, '')}</span>
-                </div>
-              ))}
+              {examQuestions.map((q, i) => {
+                const isCorrect = answers[i] === q.correctIndex;
+                return (
+                  <div
+                    key={i}
+                    className={`flex items-start gap-3 p-3 rounded-lg text-sm text-left
+                      ${isCorrect ? 'bg-success/5 text-success' : 'bg-error/5 text-error'}`}
+                  >
+                    <span className="flex-shrink-0 mt-0.5">
+                      {isCorrect ? (
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M13.25 4.75L6 12L2.75 8.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : (
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        </svg>
+                      )}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-foreground/70">{q.question}</span>
+                      {!isCorrect && (
+                        <button
+                          onClick={() => setCurrentModule(q.moduleRef)}
+                          className="block mt-1.5 text-xs text-accent hover:underline cursor-pointer transition-colors"
+                        >
+                          → Модуль {q.moduleRef}: {moduleTitles[q.moduleRef]}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </motion.div>
 
             <motion.div
@@ -405,7 +474,8 @@ export default function Module9() {
     );
   }
 
-  const q = questions[currentQ];
+  const q = examQuestions[currentQ];
+  if (!q) return null;
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-12">
@@ -426,12 +496,12 @@ export default function Module9() {
           <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-accent rounded-full"
-              animate={{ width: `${((currentQ + (showExplanation ? 1 : 0)) / questions.length) * 100}%` }}
+              animate={{ width: `${((currentQ + (showExplanation ? 1 : 0)) / examQuestions.length) * 100}%` }}
               transition={{ duration: 0.4 }}
             />
           </div>
           <span className="text-xs text-muted-foreground font-mono">
-            {currentQ + 1}/{questions.length}
+            {currentQ + 1}/{examQuestions.length}
           </span>
         </div>
       </motion.div>
@@ -444,7 +514,7 @@ export default function Module9() {
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.3 }}
         >
-          <p className="text-lg font-medium mb-6">{q.question}</p>
+          <p className="text-lg font-medium mb-6">{currentQ + 1}. {q.question}</p>
 
           {q.type === 'ordering' ? (
             <div>
@@ -573,7 +643,7 @@ export default function Module9() {
                   className="mt-4 px-6 py-2.5 bg-accent text-white text-sm font-medium rounded-lg
                     hover:opacity-90 transition-opacity cursor-pointer"
                 >
-                  {currentQ < questions.length - 1 ? 'Следующий вопрос' : 'Показать результаты'}
+                  {currentQ < examQuestions.length - 1 ? 'Следующий вопрос' : 'Показать результаты'}
                 </button>
               </motion.div>
             )}
