@@ -1,7 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCourse } from '@/context/CourseContext';
+
+function hashKey(prefix: string, text: string): string {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) {
+    h = ((h << 5) - h + text.charCodeAt(i)) | 0;
+  }
+  return `${prefix}-${(h >>> 0).toString(36)}`;
+}
 
 interface ScenarioOption {
   text: string;
@@ -17,11 +26,22 @@ interface ScenarioCardProps {
 }
 
 export default function ScenarioCard({ scenario, context, options, onComplete }: ScenarioCardProps) {
+  const { saveAnswer, getAnswer } = useCourse();
+  const key = hashKey('scenario', scenario);
+
   const [selected, setSelected] = useState<number | null>(null);
+
+  useEffect(() => {
+    const saved = getAnswer<{ selected: number }>(key);
+    if (saved && saved.selected !== undefined) {
+      setSelected(saved.selected);
+    }
+  }, [key, getAnswer]);
 
   const handleSelect = (index: number) => {
     if (selected !== null) return;
     setSelected(index);
+    saveAnswer(key, { selected: index });
     if (onComplete) onComplete(options[index].score);
   };
 

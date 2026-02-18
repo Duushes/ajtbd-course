@@ -1,7 +1,16 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCourse } from '@/context/CourseContext';
+
+function hashKey(prefix: string, text: string): string {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) {
+    h = ((h << 5) - h + text.charCodeAt(i)) | 0;
+  }
+  return `${prefix}-${(h >>> 0).toString(36)}`;
+}
 
 interface DragItem {
   id: string;
@@ -22,10 +31,24 @@ interface DragDropProps {
 }
 
 export default function DragDrop({ instruction, items, zones, onComplete }: DragDropProps) {
+  const { saveAnswer, getAnswer } = useCourse();
+  const key = hashKey('dragdrop', instruction);
+
   const [placed, setPlaced] = useState<Record<string, string>>({});
   const [draggedItem, setDraggedItem] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
   const [allCorrect, setAllCorrect] = useState(false);
+
+  useEffect(() => {
+    const saved = getAnswer<{ placed: Record<string, string>; checked: boolean; allCorrect: boolean }>(key);
+    if (saved) {
+      if (saved.placed) setPlaced(saved.placed);
+      if (saved.checked) {
+        setChecked(true);
+        setAllCorrect(saved.allCorrect ?? false);
+      }
+    }
+  }, [key, getAnswer]);
 
   const unplacedItems = items.filter(item => !Object.values(placed).includes(item.id));
 
@@ -41,17 +64,19 @@ export default function DragDrop({ instruction, items, zones, onComplete }: Drag
         if (next[key] === draggedItem) delete next[key];
       });
       next[zoneId] = draggedItem;
+      saveAnswer(key, { placed: next, checked: false, allCorrect: false });
       return next;
     });
     setDraggedItem(null);
     setChecked(false);
-  }, [draggedItem]);
+  }, [draggedItem, key, saveAnswer]);
 
   const handleRemove = (zoneId: string) => {
     if (checked) return;
     setPlaced(prev => {
       const next = { ...prev };
       delete next[zoneId];
+      saveAnswer(key, { placed: next, checked: false, allCorrect: false });
       return next;
     });
   };
@@ -63,6 +88,7 @@ export default function DragDrop({ instruction, items, zones, onComplete }: Drag
       return placedItem && zone.acceptIds.includes(placedItem);
     });
     setAllCorrect(correct);
+    saveAnswer(key, { placed, checked: true, allCorrect: correct });
     if (correct && onComplete) onComplete();
   };
 
@@ -70,8 +96,10 @@ export default function DragDrop({ instruction, items, zones, onComplete }: Drag
     if (checked) return;
     const emptyZone = zones.find(z => !placed[z.id]);
     if (emptyZone) {
-      setPlaced(prev => ({ ...prev, [emptyZone.id]: itemId }));
+      const next = { ...placed, [emptyZone.id]: itemId };
+      setPlaced(next);
       setChecked(false);
+      saveAnswer(key, { placed: next, checked: false, allCorrect: false });
     }
   };
 
@@ -159,6 +187,7 @@ export default function DragDrop({ instruction, items, zones, onComplete }: Drag
               setPlaced({});
               setChecked(false);
               setAllCorrect(false);
+              saveAnswer(key, { placed: {}, checked: false, allCorrect: false });
             }}
             className="px-4 py-2 bg-muted text-foreground text-sm rounded-lg hover:bg-card-hover transition-colors cursor-pointer"
           >

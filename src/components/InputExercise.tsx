@@ -1,7 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCourse } from '@/context/CourseContext';
+
+function hashKey(prefix: string, text: string): string {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) {
+    h = ((h << 5) - h + text.charCodeAt(i)) | 0;
+  }
+  return `${prefix}-${(h >>> 0).toString(36)}`;
+}
 
 interface InputExerciseProps {
   prompt: string;
@@ -22,12 +31,34 @@ export default function InputExercise({
   exampleAnswer,
   onComplete,
 }: InputExerciseProps) {
+  const { saveAnswer, getAnswer } = useCourse();
+  const key = hashKey('input', prompt);
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
   const [value, setValue] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const saved = getAnswer<{ value: string; submitted: boolean }>(key);
+    if (saved) {
+      if (saved.value !== undefined) setValue(saved.value);
+      if (saved.submitted) setSubmitted(true);
+    }
+  }, [key, getAnswer]);
+
+  const handleChange = (newValue: string) => {
+    setValue(newValue);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      saveAnswer(key, { value: newValue, submitted: false });
+    }, 500);
+  };
 
   const handleSubmit = () => {
     if (!value.trim()) return;
     setSubmitted(true);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    saveAnswer(key, { value, submitted: true });
     if (onComplete) onComplete();
   };
 
@@ -40,7 +71,7 @@ export default function InputExercise({
       <div className="flex flex-col gap-3">
         <textarea
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={e => handleChange(e.target.value)}
           placeholder={placeholder}
           disabled={submitted}
           rows={3}

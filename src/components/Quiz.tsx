@@ -1,7 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCourse } from '@/context/CourseContext';
+
+function hashKey(prefix: string, text: string): string {
+  let h = 0;
+  for (let i = 0; i < text.length; i++) {
+    h = ((h << 5) - h + text.charCodeAt(i)) | 0;
+  }
+  return `${prefix}-${(h >>> 0).toString(36)}`;
+}
 
 interface QuizOption {
   text: string;
@@ -16,13 +25,25 @@ interface QuizProps {
 }
 
 export default function Quiz({ question, options, onCorrect }: QuizProps) {
+  const { saveAnswer, getAnswer } = useCourse();
+  const key = hashKey('quiz', question);
+
   const [selected, setSelected] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
+
+  useEffect(() => {
+    const saved = getAnswer<{ selected: number; showResult: boolean }>(key);
+    if (saved && saved.selected !== undefined) {
+      setSelected(saved.selected);
+      setShowResult(saved.showResult);
+    }
+  }, [key, getAnswer]);
 
   const handleSelect = (index: number) => {
     if (showResult) return;
     setSelected(index);
     setShowResult(true);
+    saveAnswer(key, { selected: index, showResult: true });
     if (options[index].correct && onCorrect) {
       onCorrect();
     }

@@ -9,6 +9,7 @@ interface CourseState {
   examScore: number | null;
   theme: 'light' | 'dark';
   openCheatSheet: boolean;
+  userAnswers: Record<string, string>;
 }
 
 interface CourseContextType extends CourseState {
@@ -18,6 +19,8 @@ interface CourseContextType extends CourseState {
   setExamScore: (score: number) => void;
   toggleTheme: () => void;
   setOpenCheatSheet: (open: boolean) => void;
+  saveAnswer: (key: string, value: unknown) => void;
+  getAnswer: <T>(key: string) => T | undefined;
   progress: number;
   totalModules: number;
 }
@@ -39,6 +42,7 @@ function loadState(): Partial<CourseState> {
       completedModules: new Set((parsed.completedModules ?? []).filter((id: number) => id >= 1 && id <= TOTAL_MODULES)),
       moduleScores: parsed.moduleScores ?? {},
       examScore: parsed.examScore ?? null,
+      userAnswers: parsed.userAnswers ?? {},
     };
   } catch {
     return {};
@@ -53,6 +57,7 @@ function saveState(state: CourseState) {
       completedModules: Array.from(state.completedModules),
       moduleScores: state.moduleScores,
       examScore: state.examScore,
+      userAnswers: state.userAnswers,
     }));
   } catch {
     // ignore
@@ -74,6 +79,7 @@ export function CourseProvider({ children }: { children: ReactNode }) {
     examScore: null,
     theme: 'light',
     openCheatSheet: false,
+    userAnswers: {},
   });
 
   const [mounted, setMounted] = useState(false);
@@ -88,6 +94,7 @@ export function CourseProvider({ children }: { children: ReactNode }) {
       examScore: saved.examScore ?? null,
       theme,
       openCheatSheet: false,
+      userAnswers: saved.userAnswers ?? {},
     });
     document.documentElement.classList.toggle('dark', theme === 'dark');
     setMounted(true);
@@ -133,6 +140,23 @@ export function CourseProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, openCheatSheet: open }));
   }, []);
 
+  const saveAnswer = useCallback((key: string, value: unknown) => {
+    setState(prev => ({
+      ...prev,
+      userAnswers: { ...prev.userAnswers, [key]: JSON.stringify(value) },
+    }));
+  }, []);
+
+  const getAnswer = useCallback(<T,>(key: string): T | undefined => {
+    const raw = state.userAnswers[key];
+    if (raw === undefined) return undefined;
+    try {
+      return JSON.parse(raw) as T;
+    } catch {
+      return undefined;
+    }
+  }, [state.userAnswers]);
+
   const toggleTheme = useCallback(() => {
     setState(prev => {
       const next = prev.theme === 'light' ? 'dark' : 'light';
@@ -153,6 +177,8 @@ export function CourseProvider({ children }: { children: ReactNode }) {
       setExamScore,
       toggleTheme,
       setOpenCheatSheet,
+      saveAnswer,
+      getAnswer,
       progress,
       totalModules: TOTAL_MODULES,
     }}>
